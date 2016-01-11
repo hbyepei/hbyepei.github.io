@@ -6,8 +6,9 @@
 title: 一人浅醉 -
 subtitle: Personal Technology Blog
 description:
-author: 叶佩
-language: zh-cn
+author: yepei
+email: hbyepei@qq.com
+language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
@@ -18,35 +19,35 @@ permalink: :year/:month/:day/:title/
 permalink_defaults:
 
 # Directory
-source_dir: source
-public_dir: public
-tag_dir: tags
-archive_dir: archives
-category_dir: categories
-code_dir: downloads/code
-i18n_dir: :lang
-skip_render:
+source_dir: source #资源文件夹
+public_dir: public #公共文件夹
+tag_dir: tags #标签文件夹
+archive_dir: archives #归档文件夹
+category_dir: categories #分类文件夹
+code_dir: downloads/code #Include code文件夹
+i18n_dir: :lang #国际化文件夹
+skip_render: #跳过指定文件的渲染
 
 # Writing
-new_post_name: :title.md # File name of new posts
+new_post_name: :title.md #新文章的文件名称
 default_layout: post
-titlecase: false # Transform title into titlecase
-external_link: true # Open external links in new tab
-filename_case: 0
-render_drafts: false
-post_asset_folder: false
+titlecase: false # 把标题转换为 title case
+external_link: true #在新标签中打开链接
+filename_case: 0 #把文件名称转换为 (1) 小写或 (2) 大写
+render_drafts: false #显示草稿
+post_asset_folder: false #启动 Asset 文件夹
 relative_link: false
 future: true
-highlight:
+highlight: #代码块的设置
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace:
 
 # Category & Tag
 default_category: uncategorized
-category_map:
-tag_map:
+category_map: #分类别名
+tag_map: #标签别名
 
 # Archives 默认值为2，这里都修改为1，相应页面就只会列出标题，而非全文
 ## 2: Enable pagination
@@ -82,7 +83,7 @@ disqus_shortname:
 # Extensions 这里配置站点所用主题和插件
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: yilia
 exclude_generator:
 plugins:
 - hexo-generator-feed

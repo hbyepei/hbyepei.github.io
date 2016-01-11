@@ -2,16 +2,15 @@
 menu:
   主页: /
   所有文章: /archives
-  # 随笔: /tags/随笔
 
 # SubNav
 subnav:
-  github: "#"
+#  github: "#"
   weibo: "#"
   rss: "#"
   zhihu: "#"
   #douban: "#"
-  #mail: "#"
+  mail: "#"
   #facebook: "#"
   #google: "#"
   #twitter: "#"
@@ -32,10 +31,10 @@ open_in_new: false
 
 # Miscellaneous
 google_analytics: ''
-favicon: /favicon.png
+favicon: /favicon.ico
 
 #你的头像url
-avatar:
+avatar: /img/yp.png
 #是否开启分享
 share_jia: true
 share_addthis: false
@@ -50,15 +49,11 @@ tagcloud: true
 #friends: false
 #开启——
 friends:
-  奥巴马的博客: http://localhost:4000/
-  卡卡的美丽传说: http://localhost:4000/
-  本泽马的博客: http://localhost:4000/
-  吉格斯的博客: http://localhost:4000/
-  习大大大不同: http://localhost:4000/
-  托蒂的博客: http://localhost:4000/
+  Email: email://hbyepei@qq.com/
+  GitHub: https://github.com/hbyepei/
 
 #是否开启“关于我”。
 #不开启——
 #aboutme: false
 #开启——
-aboutme: 我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…
+aboutme: Java开发工程师<br>Corp:Qunar,Inc.<br>QQ:519549317
