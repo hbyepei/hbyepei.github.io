@@ -49,7 +49,7 @@ tagcloud: true
 #friends: false
 #开启——
 friends:
-  Email: email://hbyepei@qq.com/
+  Email: mailto:hbyepei@qq.com
   GitHub: https://github.com/hbyepei/
 
 #是否开启“关于我”。
