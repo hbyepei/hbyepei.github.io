@@ -1,3 +1,5 @@
+
+#hexo推荐忽略文件
 .DS_Store
 Thumbs.db
 db.json
@@ -5,3 +7,6 @@ db.json
 node_modules/
 public/
 .deploy*/
+
+#idea工程信息文件
+.idea/
