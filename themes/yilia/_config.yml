@@ -10,7 +10,7 @@ subnav:
   rss: "#"
   zhihu: "#"
   #douban: "#"
-  mail: "#"
+  mail: "mailto:hbyepei@qq.com"
   #facebook: "#"
   #google: "#"
   #twitter: "#"
@@ -56,4 +56,7 @@ friends:
 #不开启——
 #aboutme: false
 #开启——
-aboutme: Java开发工程师<br>Corp:Qunar,Inc.<br>QQ:519549317
+aboutme:
+  Java开发工程师
+  Corp:Qunar,Inc.
+  QQ:519549317
