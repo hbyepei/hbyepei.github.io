@@ -4,16 +4,17 @@ title:
   tag: 标签
 
 menu:
+  menu: 菜单
   home: 首页
   archives: 归档
   categories: 分类
   tags: 标签
-  about: 关于
-  search: 检索
-
+  about: 关于我
+  search: 搜索
+  link: 友情链接
 
 sidebar:
-  overview: 本站概览
+  overview: 站点概览
   toc: 文章目录
 
 post:
@@ -22,6 +23,7 @@ post:
   read_more: 阅读全文
   untitled: 未命名
   toc_empty: 此文章未包含目录
+  share: 分享到
 
 page:
   totally: 共有
@@ -35,22 +37,21 @@ footer:
 counter:
   tag_cloud:
     zero: 暂无标签
-    one: 目前共有 1 个标签
-    other: "目前共有 %d 个标签"
+    one: 目前共计 1 个标签
+    other: "目前共计 %d 个标签"
 
   categories:
     zero: 暂无分类
-    one: 目前共有 1 个分类
-    other: "目前共有 %d 个分类"
+    one: 目前共计 1 个分类
+    other: "目前共计 %d 个分类"
 
   archive_posts:
-    zero: 暂无文章。
-    one: 目前共有 1 篇文章。
-    other: "目前共有 %d 篇文章。"
+    zero: 暂无日志。
+    one: 目前共计 1 篇日志。
+    other: "目前共计 %d 篇日志。"
 
 state:
-  posts: 文章
+  posts: 日志
   pages: 页面
   tags: 标签
   categories: 分类
-
