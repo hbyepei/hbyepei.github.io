@@ -22,37 +22,50 @@ categories:
 TODO　以下方法可以封装成QMonitor类似的简洁调用接口。
 
 ## 1.记录当前状态时的某个数值：
+```java
     Metrics.gauge("key").call(new Gauge() {//“key”即监控名
         @Override
         public double getValue() {
            //在这里给出监控值
         }
     });
+```
 
 ## 2.记录一个累计值
+```java
     Counter count = Metrics.counter("key").get();//“key”即监控名
     	count.inc();//累加，或count.inc(n);
     	count.dec();//递减,或count.dec(n);
+```
 
 ## 3.记录单次变化量。可以用来监控错误数、异常等，但注意:下面代码的第一句尽量放在static块中，如果放在错误或异常发生处，则未出错时，将不会产生监控图，影响报警的添加
+```java
     Counter count = Metrics.counter("key").delta().get();//“key”即监控名
     count.inc();
+```
 
 ## 4.记录变化率（不清零）
+```java
     Counter count = Metrics.counter("key").delta().keep().get();//“key”即监控名
     count.inc();
+```
 
 ## 5.监控QPS
+```java
     Meter meter = Metrics.meter("key").get();
     meter.mark();//在请求发生处调用mark()方法
+```
 
 ## 6.监控响应时间，也可用于记录QPS，需要Cover耗时上下文
+```java
     Timer.Context time = Metrics.timer("key").get().time();//没有tag的时候可以作为常量         
     try {
       //耗时操作
     } finally {
         time.stop();//操作完成
     }		
+```
+
 ## 7.指标分组监控——tag
 调用Metrics./gauge/counter/meter/timer("").tag(key, value).get()，来获取KeyWrapper
 
