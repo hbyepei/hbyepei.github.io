@@ -7,11 +7,13 @@ categories:
 
 ## 介绍
 Metrics是一个给JAVA服务的各项指标提供度量工具的包，在JAVA代码中嵌入Metrics代码，可以方便的对业务代码的各个指标进行监控，同时，Metrics能够很好的跟Ganlia、Graphite结合，方便的提供图形化接口。基本使用方式直接将core包（目前稳定版本3.0.1）导入pom文件即可，配置如下：
+```xml 
     <dependency>
         <groupId>com.codahale.metrics</groupId>
         <artifactId>metrics-core</artifactId>
         <version>3.0.1</version>
     </dependency>
+```
     
 core包主要提供如下核心功能：
 
@@ -33,11 +35,13 @@ Timers主要是用来统计某一块代码段的执行时间以及其分布情�
 
 ## Health Checks
 Metrics提供了一个独立的模块：Health Checks，用于对Application、其子模块或者关联模块的运行是否正常做检测。该模块是独立metrics-core模块的，使用时则导入metrics-healthchecks包。
+```xml 
     <dependency>                                    
       <groupId>com.codahale.metrics</groupId>       
       <artifactId>metrics-healthchecks</artifactId> 
       <version>3.0.1</version>         
     </dependency>
+```    
 使用起来和与上述几种类型的Metrics有点类似，但是需要重新实例化一个Metrics容器HealthCheckRegistry，待检测模块继承抽象类HealthCheck并实现check()方法即可，然后将该模块注册到HealthCheckRegistry中，判断的时候通过isHealthy()接口即可。
 
 ## 其他支持
