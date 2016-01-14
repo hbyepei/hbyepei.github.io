@@ -1,8 +1,8 @@
 ---
 title: "Markdown中插入数学公式的方法"
 date: 2016-01-14 10:25:21
-tags: markdown
-categories: 技术文章
+tags: 
+categories: markdown
 ---
 
 

@@ -1,8 +1,8 @@
 ---
 title: cerberus监控
 date: 2016-01-13 18:54:25
-tags: 监控
-categories: 
+tags: 
+categories: 监控
 ---
 **参考WiKi**:*http://wiki.corp.qunar.com/pages/viewpage.action?pageId=63243479*
 

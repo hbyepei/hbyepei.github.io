@@ -5,6 +5,41 @@ tags:
 categories: linux
 ---
 
+- 统计一组目录下的单词出现情况
+
+
+```bash 
+	for i in {5..8}; 
+     do zgrep 'There are 1 records need to update, 0 records update successfully.' l-insurance${i}.f.cn6/201506/insurance-provider.log.2015-06-14-*.gz; 
+   done
+```
+
+
+- 遍历查询多台服务器上的日志
+
+```bash 
+	atnodes 'zgrep /home/q/www/hotel-tts/logs/request.log*' l-hs[01-02].wap.cn1 | sort -t '#' -k1,1
+```
+
+- Top-N统计：  
+`sort +awk+uniq` 统计文件中出现次数最多的前10个单词  
+
+实例:  
+>`cat logt.log|sort -s -t '-' -k1n |awk '{print $1;}'|uniq -c|sort -k1nr|head -100`
+
+1. 使用linux命令或者shell实现：文件words存放英文单词，格式为每行一个英文单词（单词可以重复），统计这个文件中出现次数最多的前10个单词。  
+
+>`cat words.txt | sort | uniq -c | sort -k1,1nr | head -10`
+>
+
+2. 主要考察对sort、uniq命令的使用，相关解释如下，命令及参数的详细说明请自行通过man查看，简单介绍下以上  
+
+3. 指令各部分的功能：
+
+`sort`:  对单词进行排序  
+`uniq -c`:  显示唯一的行，并在每行行首加上本行在文件中出现的次数  
+`sort -k1,1nr`:  按照第一个字段，数值排序，且为逆序  
+`head -10`:  取前10行数据  
 
 - 统计某文件夹下文件的个数
 
