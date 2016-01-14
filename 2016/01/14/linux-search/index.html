@@ -4,17 +4,69 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016 | 一人浅醉 -</title>
+  <title>Linux统计某文件夹下文件、文件夹的个数 | 一人浅醉 -</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="一人浅醉 -">
-<meta property="og:url" content="http://yoursite.com/archives/2016/index.html">
+  <meta name="description" content="统计某文件夹下文件的个数
+
+ls -l |grep &amp;quot;^-&amp;quot;|wc -l
+
+
+统计某文件夹下目录的个数
+
+ls -l |grep &amp;quot;^ｄ&amp;quot;|wc -l
+
+
+统计文件夹下文件的个数，包括子文件夹里的
+
+ls -lR|grep &amp;quot;^-&amp;quot;|wc -l
+
+
+如统计/home/han目录(包含子目录)下的所有js文件则：
+
+ls -lR /home">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux统计某文件夹下文件、文件夹的个数">
+<meta property="og:url" content="http://yoursite.com/2016/01/14/linux-search/index.html">
 <meta property="og:site_name" content="一人浅醉 -">
-<meta property="og:description">
+<meta property="og:description" content="统计某文件夹下文件的个数
+
+ls -l |grep &amp;quot;^-&amp;quot;|wc -l
+
+
+统计某文件夹下目录的个数
+
+ls -l |grep &amp;quot;^ｄ&amp;quot;|wc -l
+
+
+统计文件夹下文件的个数，包括子文件夹里的
+
+ls -lR|grep &amp;quot;^-&amp;quot;|wc -l
+
+
+如统计/home/han目录(包含子目录)下的所有js文件则：
+
+ls -lR /home">
+<meta property="og:updated_time" content="2016-01-14T14:41:38.626Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一人浅醉 -">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Linux统计某文件夹下文件、文件夹的个数">
+<meta name="twitter:description" content="统计某文件夹下文件的个数
+
+ls -l |grep &amp;quot;^-&amp;quot;|wc -l
+
+
+统计某文件夹下目录的个数
+
+ls -l |grep &amp;quot;^ｄ&amp;quot;|wc -l
+
+
+统计文件夹下文件的个数，包括子文件夹里的
+
+ls -lR|grep &amp;quot;^-&amp;quot;|wc -l
+
+
+如统计/home/han目录(包含子目录)下的所有js文件则：
+
+ls -lR /home">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -190,216 +242,153 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-linux-search" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/01/14/linux-search/" class="archive-article-date">
-  	<time datetime="2016-01-14T14:36:04.000Z" itemprop="datePublished">1月 14</time>
+    <div class="article-meta">
+      <a href="/2016/01/14/linux-search/" class="article-date">
+  	<time datetime="2016-01-14T14:36:04.000Z" itemprop="datePublished">2016-01-14</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/14/linux-search/">Linux统计某文件夹下文件、文件夹的个数</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux统计某文件夹下文件、文件夹的个数
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/linux/">linux</a>
 	</div>
 
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>统计某文件夹下文件的个数</p>
+<blockquote>
+<p><code>ls -l |grep &quot;^-&quot;|wc -l</code></p>
+</blockquote>
+</li>
+<li><p>统计某文件夹下目录的个数</p>
+<blockquote>
+<p><code>ls -l |grep &quot;^ｄ&quot;|wc -l</code></p>
+</blockquote>
+</li>
+<li><p>统计文件夹下文件的个数，包括子文件夹里的</p>
+<blockquote>
+<p><code>ls -lR|grep &quot;^-&quot;|wc -l</code></p>
+</blockquote>
+</li>
+<li><p>如统计/home/han目录(包含子目录)下的所有js文件则：</p>
+<blockquote>
+<p><code>ls -lR /home/han|grep js|wc -l 或 ls -l &quot;/home/han&quot;|grep &quot;js&quot;|wc -l</code></p>
+</blockquote>
+</li>
+<li><p>统计文件夹下目录的个数，包括子文件夹里的</p>
+<blockquote>
+<p><code>ls -lR|grep &quot;^d&quot;|wc -l</code></p>
+</blockquote>
+</li>
+<li><p>说明：</p>
+<blockquote>
+<p><code>ls -lR</code></p>
+</blockquote>
+</li>
+<li><p>长列表输出该目录下文件信息(R代表子目录注意这里的文件，不同于一般的文件，可能是目录、链接、设备文件等)</p>
+<blockquote>
+<p><code>grep &quot;^-&quot;</code></p>
+</blockquote>
+</li>
+<li><p>这里将长列表输出信息过滤一部分，只保留一般文件，如果只保留目录就是 ^d</p>
+<blockquote>
+<p><code>wc -l</code></p>
+</blockquote>
+</li>
+<li><p>统计输出信息的行数，因为已经过滤得只剩一般文件了，所以统计结果就是一般文件信息的行数，又由于一行信息对应一个文件，所以也就是文件的个数。</p>
+</li>
+</ul>
+<p>＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝<br>如果只查看文件夹<br><code>ls -d</code> 只能显示一个.<br><code>find -type d</code>   可以看到子文件夹<br><code>ls -lF |grep /</code>   或 <code>ls -l |grep &#39;^d&#39;</code> 只看当前目录下的文件夹，不包括往下的文件夹</p>
+
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/01/14/cmd_markdown/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Cmd Markdown工具</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/01/14/cmd_markdown/" class="archive-article-date">
-  	<time datetime="2016-01-14T03:00:45.000Z" itemprop="datePublished">1月 14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/14/cmd_markdown/">Cmd Markdown工具</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
-
-          
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/markdown/">markdown</a>
-	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/01/14/markdown公式/" class="archive-article-date">
-  	<time datetime="2016-01-14T02:25:21.000Z" itemprop="datePublished">1月 14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/14/markdown公式/">Markdown中插入数学公式的方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术文章/">技术文章</a>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/01/13/metrics/" class="archive-article-date">
-  	<time datetime="2016-01-13T11:07:14.000Z" itemprop="datePublished">1月 13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/13/metrics/">Metrics-Java版的指标度量工具</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/监控/">监控</a></li></ul>
-	</div>
 
-          
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="linux-search" data-title="Linux统计某文件夹下文件、文件夹的个数" data-url="http://yoursite.com/2016/01/14/linux-search/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/01/13/cerberus/" class="archive-article-date">
-  	<time datetime="2016-01-13T10:54:25.000Z" itemprop="datePublished">1月 13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/13/cerberus/">cerberus监控</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/监控/">监控</a></li></ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/01/08/npm/" class="archive-article-date">
-  	<time datetime="2016-01-08T02:41:15.000Z" itemprop="datePublished">1月 8</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/08/npm/">淘宝npm镜像使用方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 </div>
       <footer id="footer">
@@ -425,8 +414,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false
