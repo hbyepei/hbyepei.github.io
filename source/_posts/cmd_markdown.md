@@ -1,16 +1,11 @@
 ---
-title: "Cmd Markdown工具"
+title: "Cmd Markdown 简明语法手册"
 date: 2016-01-14 11:00:45
 tags: 
 categories: markdown
 ---
 
-# Cmd Markdown 简明语法手册
-
-标签： Cmd-Markdown
-
 ---
-
 ### 1. 斜体和粗体
 
 使用 * 和 ** 表示斜体和粗体。

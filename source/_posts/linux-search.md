@@ -8,18 +8,17 @@ categories: linux
 - 统计一组目录下的单词出现情况
 
 
-```bash 
+>`
 	for i in {5..8}; 
      do zgrep 'There are 1 records need to update, 0 records update successfully.' l-insurance${i}.f.cn6/201506/insurance-provider.log.2015-06-14-*.gz; 
    done
-```
+>`
 
 
 - 遍历查询多台服务器上的日志
 
-```bash 
-	atnodes 'zgrep /home/q/www/hotel-tts/logs/request.log*' l-hs[01-02].wap.cn1 | sort -t '#' -k1,1
-```
+>`atnodes 'zgrep /home/q/www/hotel-tts/logs/request.log*' l-hs[01-02].wap.cn1 | sort -t '#' -k1,1`
+
 
 - Top-N统计：  
 `sort +awk+uniq` 统计文件中出现次数最多的前10个单词  
