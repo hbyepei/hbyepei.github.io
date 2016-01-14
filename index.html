@@ -321,7 +321,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="u4ECB_u7ECD"><a href="#u4ECB_u7ECD" class="headerlink" title="介绍"></a>介绍</h2><p>Metrics是一个给JAVA服务的各项指标提供度量工具的包，在JAVA代码中嵌入Metrics代码，可以方便的对业务代码的各个指标进行监控，同时，Metrics能够很好的跟Ganlia、Graphite结合，方便的提供图形化接口。基本使用方式直接将core包（目前稳定版本3.0.1）导入pom文件即可，配置如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>com.codahale.metrics<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>metrics-core<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">version</span>&gt;</span>3.0.1<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+        <h2 id="u4ECB_u7ECD"><a href="#u4ECB_u7ECD" class="headerlink" title="介绍"></a>介绍</h2><p>Metrics是一个给JAVA服务的各项指标提供度量工具的包，在JAVA代码中嵌入Metrics代码，可以方便的对业务代码的各个指标进行监控，同时，Metrics能够很好的跟Ganlia、Graphite结合，方便的提供图形化接口。基本使用方式直接将core包（目前稳定版本3.0.1）导入pom文件即可，配置如下：  </p>
+<pre><code class="xml"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.codahale.metrics<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>metrics-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+</code></pre>
 <p>core包主要提供如下核心功能：</p>
 <h4 id="Metrics_Registries_u7C7B_u4F3C_u4E00_u4E2Ametrics_u5BB9_u5668_uFF0C_u7EF4_u62A4_u4E00_u4E2AMap_uFF0C_u53EF_u4EE5_u662F_u4E00_u4E2A_u670D_u52A1_u4E00_u4E2A_u5B9E_u4F8B_u3002"><a href="#Metrics_Registries_u7C7B_u4F3C_u4E00_u4E2Ametrics_u5BB9_u5668_uFF0C_u7EF4_u62A4_u4E00_u4E2AMap_uFF0C_u53EF_u4EE5_u662F_u4E00_u4E2A_u670D_u52A1_u4E00_u4E2A_u5B9E_u4F8B_u3002" class="headerlink" title="Metrics Registries类似一个metrics容器，维护一个Map，可以是一个服务一个实例。"></a>Metrics Registries类似一个metrics容器，维护一个Map，可以是一个服务一个实例。</h4><h4 id="u652F_u6301_u4E94_u79CDmetric_u7C7B_u578B_uFF1AGauges_u3001Counters_u3001Meters_u3001Histograms_u548CTimers_u3002"><a href="#u652F_u6301_u4E94_u79CDmetric_u7C7B_u578B_uFF1AGauges_u3001Counters_u3001Meters_u3001Histograms_u548CTimers_u3002" class="headerlink" title="支持五种metric类型：Gauges、Counters、Meters、Histograms和Timers。"></a>支持五种metric类型：Gauges、Counters、Meters、Histograms和Timers。</h4><h4 id="u53EF_u4EE5_u5C06metrics_u503C_u901A_u8FC7JMX_u3001Console_uFF0CCSV_u6587_u4EF6_u548CSLF4J_loggers_u53D1_u5E03_u51FA_u6765_u3002"><a href="#u53EF_u4EE5_u5C06metrics_u503C_u901A_u8FC7JMX_u3001Console_uFF0CCSV_u6587_u4EF6_u548CSLF4J_loggers_u53D1_u5E03_u51FA_u6765_u3002" class="headerlink" title="可以将metrics值通过JMX、Console，CSV文件和SLF4J loggers发布出来。"></a>可以将metrics值通过JMX、Console，CSV文件和SLF4J loggers发布出来。</h4><h4 id="u4E94_u79CDMetrics_u7C7B_u578B_uFF1A"><a href="#u4E94_u79CDMetrics_u7C7B_u578B_uFF1A" class="headerlink" title="五种Metrics类型："></a>五种Metrics类型：</h4><ol>
 <li>Gauges<br>Gauges是一个最简单的计量，一般用来统计瞬时状态的数据信息，比如系统中处于pending状态的job。</li>
@@ -330,11 +336,11 @@
 <li>Histograms<br>Histograms主要使用来统计数据的分布情况，最大值、最小值、平均值、中位数，百分比（75%、90%、95%、98%、99%和99.9%）。例如，需要统计某个页面的请求响应时间分布情况，可以使用该种类型的Metrics进行统计。</li>
 <li>Timers<br>Timers主要是用来统计某一块代码段的执行时间以及其分布情况，具体是基于Histograms和Meters来实现的。</li>
 </ol>
-<h2 id="Health_Checks"><a href="#Health_Checks" class="headerlink" title="Health Checks"></a>Health Checks</h2><p>Metrics提供了一个独立的模块：Health Checks，用于对Application、其子模块或者关联模块的运行是否正常做检测。该模块是独立metrics-core模块的，使用时则导入metrics-healthchecks包。</p>
+<h2 id="Health_Checks"><a href="#Health_Checks" class="headerlink" title="Health Checks"></a>Health Checks</h2><p>Metrics提供了一个独立的模块：Health Checks，用于对Application、其子模块或者关联模块的运行是否正常做检测。该模块是独立metrics-core模块的，使用时则导入metrics-healthchecks包。  </p>
 <pre><code class="xml"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>                                    
-  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.codahale.metrics<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>       
-  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>metrics-healthchecks<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span> 
-  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span>         
+    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.codahale.metrics<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>       
+    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>metrics-healthchecks<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span> 
+    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span>         
 <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
 </code></pre>
 <p>使用起来和与上述几种类型的Metrics有点类似，但是需要重新实例化一个Metrics容器HealthCheckRegistry，待检测模块继承抽象类HealthCheck并实现check()方法即可，然后将该模块注册到HealthCheckRegistry中，判断的时候通过isHealthy()接口即可。</p>
