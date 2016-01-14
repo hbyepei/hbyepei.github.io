@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/markdown/" style="font-size: 20px;">markdown</a> <a href="/tags/监控/" style="font-size: 20px;">监控</a>
+						<a href="/tags/监控/" style="font-size: 10px;">监控</a>
 					</div>
 				</section>
 				
@@ -219,6 +219,34 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
+<li>统计一组目录下的单词出现情况</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> &#123;<span class="number">5</span>..<span class="number">8</span>&#125;; </span><br><span class="line">    <span class="keyword">do</span> zgrep <span class="string">'There are 1 records need to update, 0 records update successfully.'</span> l-insurance<span class="variable">$&#123;i&#125;</span>.f.cn6/<span class="number">201506</span>/insurance-provider.log.<span class="number">2015</span>-<span class="number">06</span>-<span class="number">14</span>-*.gz; </span><br><span class="line">  <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>遍历查询多台服务器上的日志</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">atnodes <span class="string">'zgrep /home/q/www/hotel-tts/logs/request.log*'</span> l-hs[<span class="number">01</span>-<span class="number">02</span>].wap.cn1 | sort -t <span class="string">'#'</span> -k1,<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Top-N统计：<br><code>sort +awk+uniq</code> 统计文件中出现次数最多的前10个单词  </li>
+</ul>
+<p>实例:  </p>
+<blockquote>
+<p><code>cat logt.log|sort -s -t &#39;-&#39; -k1n |awk &#39;{print $1;}&#39;|uniq -c|sort -k1nr|head -100</code></p>
+</blockquote>
+<ol>
+<li>使用linux命令或者shell实现：文件words存放英文单词，格式为每行一个英文单词（单词可以重复），统计这个文件中出现次数最多的前10个单词。  </li>
+</ol>
+<blockquote>
+<p><code>cat words.txt | sort | uniq -c | sort -k1,1nr | head -10</code></p>
+</blockquote>
+<ol>
+<li><p>主要考察对sort、uniq命令的使用，相关解释如下，命令及参数的详细说明请自行通过man查看，简单介绍下以上  </p>
+</li>
+<li><p>指令各部分的功能：</p>
+</li>
+</ol>
+<p><code>sort</code>:  对单词进行排序<br><code>uniq -c</code>:  显示唯一的行，并在每行行首加上本行在文件中出现的次数<br><code>sort -k1,1nr</code>:  按照第一个字段，数值排序，且为逆序<br><code>head -10</code>:  取前10行数据  </p>
+<ul>
 <li><p>统计某文件夹下文件的个数</p>
 <blockquote>
 <p><code>ls -l |grep &quot;^-&quot;|wc -l</code></p>
@@ -480,10 +508,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/markdown/">markdown</a>
@@ -584,13 +608,9 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术文章/">技术文章</a>
+	<a class="article-category-link" href="/categories/markdown/">markdown</a>
 	</div>
 
 
@@ -746,11 +766,11 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/监控/">监控</a></li></ul>
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/监控/">监控</a>
 	</div>
 
-      
 
       
       <div class="clearfix"></div>
@@ -808,11 +828,11 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/hexo/">hexo</a>
 	</div>
 
-      
 
       
       <div class="clearfix"></div>
