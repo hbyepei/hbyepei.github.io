@@ -75,3 +75,5 @@ $$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
 *[2] http://www.ruanyifeng.com/blog/2011/07/formula_online_generator.html*
 
 *[3] http://www.forkosh.com/mathtex.html*
+
+[4] 字符包围，多级无序列表，大标题，中标题，单行文本，多行文本等格式请参考:*http://www.tuicool.com/articles/zIJrEjn*
