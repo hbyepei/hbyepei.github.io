@@ -70,8 +70,8 @@ $$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
 
 ## 参考 ##
 
-    *[1] http://www.forkosh.com/mathtextutorial.html*
-    
-    *[2] http://www.ruanyifeng.com/blog/2011/07/formula_online_generator.html*
-    
-    *[3] http://www.forkosh.com/mathtex.html*
+*[1] http://www.forkosh.com/mathtextutorial.html*
+
+*[2] http://www.ruanyifeng.com/blog/2011/07/formula_online_generator.html*
+
+*[3] http://www.forkosh.com/mathtex.html*
