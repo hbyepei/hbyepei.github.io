@@ -38,7 +38,7 @@ categories: markdown
 
 示例：
 
-这是去往 [本人博客](http://ghosertblog.github.com) 的链接。
+这是去往 [本人的QQ空间](http://user.qzone.qq.com/519549317/main) 的链接。
 
 ### 4. 无序列表
 
