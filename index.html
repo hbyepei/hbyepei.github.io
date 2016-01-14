@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/监控/" style="font-size: 20px;">监控</a>
+						<a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/监控/" style="font-size: 20px;">监控</a>
 					</div>
 				</section>
 				
@@ -191,6 +191,111 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-markdown公式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/14/markdown公式/" class="article-date">
+  	<time datetime="2016-01-14T02:25:21.000Z" itemprop="datePublished">2016-01-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/14/markdown公式/">&#39;Markdown中插入数学公式的方法&#39;</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>自从使用Markdown以来，就开始一直使用Markdown+Github在写文章，整理自己的所学所思。本文亦是通过这种方式完成的。</p>
+<p>然而，Markdown自由书写的特性很好，唯独遇到数学公式时就要煞费苦心——每次都是先使用Latex书写(在线的Latex编辑器参考[1])，然后保存为图片，使用img标签进行引用，当公式很多的时候稍显复杂。</p>
+<p>本文的方法使用html的语法，调用[1]的公式生成API，在线生成Latex数学公式，免去将公式保存为图片的麻烦。当然，弊端也是有的，公式太多，可能会造成刷新比一般的网页慢一些。  </p>
+<h2 id="u65B9_u6CD5_u4E00_uFF1A_u4F7F_u7528Google_Chart_u7684_u670D_u52A1_u5668"><a href="#u65B9_u6CD5_u4E00_uFF1A_u4F7F_u7528Google_Chart_u7684_u670D_u52A1_u5668" class="headerlink" title="方法一：使用Google Chart的服务器"></a>方法一：使用Google Chart的服务器</h2><p><code>&lt;img src=&quot;http://chart.googleapis.com/chart?cht=tx&amp;chl= 在此插入Latex公式&quot; style=&quot;border:none;&quot;&gt;</code>  </p>
+<ul>
+<li>一个例子，</li>
+</ul>
+<p><code>&lt;img src=&quot;http://chart.googleapis.com/chart?cht=tx&amp;chl=\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}&quot; style=&quot;border:none;&quot;&gt;</code>  </p>
+<p>公式显示结果为（如果谷歌被墙，有可能显示不出来）：</p>
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" style="border:none;"></p>
+<p>适用了下，Google Chart服务器的响应速度还可以，但据说可能复杂一些的Latex公式可能无法解析（参考[2]）。</p>
+<h2 id="u65B9_u6CD5_u4E8C_uFF1A_u4F7F_u7528forkosh_u670D_u52A1_u5668"><a href="#u65B9_u6CD5_u4E8C_uFF1A_u4F7F_u7528forkosh_u670D_u52A1_u5668" class="headerlink" title="方法二：使用forkosh服务器"></a>方法二：使用forkosh服务器</h2><p>forkosh上提供了关于Latex公式的一份简短而很有用的帮助，参考[1]和[3].</p>
+<p>使用forkosh插入公式的方法是  </p>
+<blockquote>
+<p><code>&lt;img src=&quot;http://www.forkosh.com/mathtex.cgi? 在此处插入Latex公式&quot;&gt;</code></p>
+</blockquote>
+<ul>
+<li>给个例子，</li>
+</ul>
+<blockquote>
+<p><code>&lt;img src=&quot;http://www.forkosh.com/mathtex.cgi? \Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}&quot;&gt;</code>  </p>
+</blockquote>
+<p>显示结果为：  </p>
+<p><img src="http://www.forkosh.com/mathtex.cgi? \Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}">  </p>
+<p>因为网页插入公式的原理是调用“某某网站的服务器”动态生成的，所有保证公式正常显示的前提是该网址能一直存在着为我等小生做些小小的服务。forkosh我是用了快2年了，一直很好，推荐！</p>
+<h2 id="u65B9_u6CD5_u4E09_uFF1A_u4F7F_u7528MathJax_u5F15_u64CE"><a href="#u65B9_u6CD5_u4E09_uFF1A_u4F7F_u7528MathJax_u5F15_u64CE" class="headerlink" title="方法三：使用MathJax引擎"></a>方法三：使用MathJax引擎</h2><p>大家都看过Stackoverflow上的公式吧，漂亮，其生成的不是图片。这就要用到MathJax引擎，在Markdown中添加MathJax引擎也很简单，</p>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<blockquote>
+<p><code>&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default&quot;&gt;&lt;/script&gt;</code>  </p>
+</blockquote>
+<p>然后，再使用Tex写公式。<code>$$公式$$</code>表示行间公式，本来Tex中使用<code>\(公式\)</code>表示行内公式，但因为Markdown中\是转义字符，所以在Markdown中输入行内公式使用<code>\\(公式\\)</code>，如下代码：</p>
+<blockquote>
+<p><code>$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$</code><br><code>\\(x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\\)</code>  </p>
+</blockquote>
+<p>分别显示结果（行间公式）：</p>
+<p>$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$</p>
+<p>行内公式：</p>
+<p>\(x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\)</p>
+<p>不信，你可以试一下，在公式上还可以使用鼠标右键操作。</p>
+<h2 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h2><pre><code>*[1] http://www.forkosh.com/mathtextutorial.html*
+
+*[2] http://www.ruanyifeng.com/blog/2011/07/formula_online_generator.html*
+
+*[3] http://www.forkosh.com/mathtex.html*
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/技术文章/">技术文章</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-metrics" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -299,28 +404,31 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><strong>参考WiKi</strong>:<em><a href="http://wiki.corp.qunar.com/pages/viewpage.action?pageId=63243479" target="_blank" rel="external">http://wiki.corp.qunar.com/pages/viewpage.action?pageId=63243479</a></em></p>
-<h1 id="u4E00_u3001_u76D1_u63A7_u5206_u4E3A_u4E24_u7C7B_3A"><a href="#u4E00_u3001_u76D1_u63A7_u5206_u4E3A_u4E24_u7C7B_3A" class="headerlink" title="一、监控分为两类:"></a>一、监控分为两类:</h1><h2 id="u4E1A_u52A1_u76D1_u63A7_28ValueType_29"><a href="#u4E1A_u52A1_u76D1_u63A7_28ValueType_29" class="headerlink" title="业务监控(ValueType)"></a>业务监控(ValueType)</h2><ul>
-<li><h3 id="Gauge_3A__u77AC_u95F4_u503C_u2014_u2014_u4E00_u4E2A_u6700_u7B80_u5355_u7684_u8BA1_u91CF_uFF0C_u4E00_u822C_u7528_u6765_u7EDF_u8BA1_u77AC_u65F6_u72B6_u6001_u7684_u6570_u636E_u4FE1_u606F"><a href="#Gauge_3A__u77AC_u95F4_u503C_u2014_u2014_u4E00_u4E2A_u6700_u7B80_u5355_u7684_u8BA1_u91CF_uFF0C_u4E00_u822C_u7528_u6765_u7EDF_u8BA1_u77AC_u65F6_u72B6_u6001_u7684_u6570_u636E_u4FE1_u606F" class="headerlink" title="Gauge:         瞬间值——一个最简单的计量，一般用来统计瞬时状态的数据信息"></a>Gauge:         瞬间值——一个最简单的计量，一般用来统计瞬时状态的数据信息</h3></li>
-<li><h3 id="Counter_3A__u589E_u51CF_u4E00_u4E2A_u6574_u6570_u503C_u2014_u2014Counter_u662FGauge_u7684_u4E00_u4E2A_u7279_u4F8B_uFF0C_u7EF4_u62A4_u4E00_u4E2A_u8BA1_u6570_u5668_uFF0C_u53EF_u4EE5_u901A_u8FC7inc_28_29_u548Cdec_28_29_u65B9_u6CD5_u5BF9_u8BA1_u6570_u5668_u505A_u4FEE_u6539_u3002_u4F7F_u7528_u6B65_u9AA4_u4E0EGauge_u57FA_u672C_u7C7B_u4F3C_uFF0C_u5728MetricRegistry_u4E2D_u63D0_u4F9B_u4E86_u9759_u6001_u65B9_u6CD5_u53EF_u4EE5_u76F4_u63A5_u5B9E_u4F8B_u5316_u4E00_u4E2ACounter_u3002"><a href="#Counter_3A__u589E_u51CF_u4E00_u4E2A_u6574_u6570_u503C_u2014_u2014Counter_u662FGauge_u7684_u4E00_u4E2A_u7279_u4F8B_uFF0C_u7EF4_u62A4_u4E00_u4E2A_u8BA1_u6570_u5668_uFF0C_u53EF_u4EE5_u901A_u8FC7inc_28_29_u548Cdec_28_29_u65B9_u6CD5_u5BF9_u8BA1_u6570_u5668_u505A_u4FEE_u6539_u3002_u4F7F_u7528_u6B65_u9AA4_u4E0EGauge_u57FA_u672C_u7C7B_u4F3C_uFF0C_u5728MetricRegistry_u4E2D_u63D0_u4F9B_u4E86_u9759_u6001_u65B9_u6CD5_u53EF_u4EE5_u76F4_u63A5_u5B9E_u4F8B_u5316_u4E00_u4E2ACounter_u3002" class="headerlink" title="Counter:    增减一个整数值——Counter是Gauge的一个特例，维护一个计数器，可以通过inc()和dec()方法对计数器做修改。使用步骤与Gauge基本类似，在MetricRegistry中提供了静态方法可以直接实例化一个Counter。"></a>Counter:    增减一个整数值——Counter是Gauge的一个特例，维护一个计数器，可以通过inc()和dec()方法对计数器做修改。使用步骤与Gauge基本类似，在MetricRegistry中提供了静态方法可以直接实例化一个Counter。</h3></li>
-<li><h3 id="Meter_3A_QPS_u76D1_u63A7_u2014_u2014_u7528_u6765_u5EA6_u91CF_u67D0_u4E2A_u65F6_u95F4_u6BB5_u7684_u5E73_u5747_u5904_u7406_u6B21_u6570_uFF0C_u6BCF1_u30015_u300115_u5206_u949F_u7684TPS_u3002_u901A_u8FC7metrics-meter_28_29_u5B9E_u4F8B_u5316Meter_uFF0C_u7136_u540E_u901A_u8FC7meter-mark_28_29_u8BB0_u5F55_u8BF7_u6C42_u3002_u7EDF_u8BA1_u7ED3_u679C_u6709_u603B_u7684_u8BF7_u6C42_u6570_uFF0C_u5E73_u5747_u6BCF_u79D2_u7684_u8BF7_u6C42_u6570_uFF0C_u4EE5_u53CA_u6700_u8FD1_u76841_u30015_u300115_u5206_u949F_u7684_u5E73_u5747TPS_u7B49_u3002"><a href="#Meter_3A_QPS_u76D1_u63A7_u2014_u2014_u7528_u6765_u5EA6_u91CF_u67D0_u4E2A_u65F6_u95F4_u6BB5_u7684_u5E73_u5747_u5904_u7406_u6B21_u6570_uFF0C_u6BCF1_u30015_u300115_u5206_u949F_u7684TPS_u3002_u901A_u8FC7metrics-meter_28_29_u5B9E_u4F8B_u5316Meter_uFF0C_u7136_u540E_u901A_u8FC7meter-mark_28_29_u8BB0_u5F55_u8BF7_u6C42_u3002_u7EDF_u8BA1_u7ED3_u679C_u6709_u603B_u7684_u8BF7_u6C42_u6570_uFF0C_u5E73_u5747_u6BCF_u79D2_u7684_u8BF7_u6C42_u6570_uFF0C_u4EE5_u53CA_u6700_u8FD1_u76841_u30015_u300115_u5206_u949F_u7684_u5E73_u5747TPS_u7B49_u3002" class="headerlink" title="Meter:        QPS监控——用来度量某个时间段的平均处理次数，每1、5、15分钟的TPS。通过metrics.meter()实例化Meter，然后通过meter.mark()记录请求。统计结果有总的请求数，平均每秒的请求数，以及最近的1、5、15分钟的平均TPS等。"></a>Meter:        QPS监控——用来度量某个时间段的平均处理次数，每1、5、15分钟的TPS。通过metrics.meter()实例化Meter，然后通过meter.mark()记录请求。统计结果有总的请求数，平均每秒的请求数，以及最近的1、5、15分钟的平均TPS等。</h3></li>
-<li><h3 id="Timer_3A__u54CD_u5E94_u65F6_u95F4_u53CAQPS_u76D1_u63A7_u2014_u2014_u4E3B_u8981_u662F_u7528_u6765_u7EDF_u8BA1_u67D0_u4E00_u5757_u4EE3_u7801_u6BB5_u7684_u6267_u884C_u65F6_u95F4_u4EE5_u53CA_u5176_u5206_u5E03_u60C5_u51B5_uFF0C_u9700_u8981Cover_u4F4F_u4E00_u4E2A_u8017_u65F6_u7684_u4E0A_u4E0B_u6587_u3002"><a href="#Timer_3A__u54CD_u5E94_u65F6_u95F4_u53CAQPS_u76D1_u63A7_u2014_u2014_u4E3B_u8981_u662F_u7528_u6765_u7EDF_u8BA1_u67D0_u4E00_u5757_u4EE3_u7801_u6BB5_u7684_u6267_u884C_u65F6_u95F4_u4EE5_u53CA_u5176_u5206_u5E03_u60C5_u51B5_uFF0C_u9700_u8981Cover_u4F4F_u4E00_u4E2A_u8017_u65F6_u7684_u4E0A_u4E0B_u6587_u3002" class="headerlink" title="Timer:        响应时间及QPS监控——主要是用来统计某一块代码段的执行时间以及其分布情况，需要Cover住一个耗时的上下文。"></a>Timer:        响应时间及QPS监控——主要是用来统计某一块代码段的执行时间以及其分布情况，需要Cover住一个耗时的上下文。</h3></li>
+<h1 id="u4E00_u3001_u76D1_u63A7_u5206_u4E3A_u4E24_u7C7B_3A"><a href="#u4E00_u3001_u76D1_u63A7_u5206_u4E3A_u4E24_u7C7B_3A" class="headerlink" title="一、监控分为两类:"></a>一、监控分为两类:</h1><h2 id="u4E1A_u52A1_u76D1_u63A7"><a href="#u4E1A_u52A1_u76D1_u63A7" class="headerlink" title="业务监控"></a>业务监控</h2><ul>
+<li>Gauge:         瞬间值——一个最简单的计量，一般用来统计瞬时状态的数据信息。  </li>
+<li>Counter:    增减一个整数值——Counter是Gauge的一个特例，维护一个计数器，可以通过inc()和dec()方法对计数器做修改。使用步骤与Gauge基本类似，在MetricRegistry中提供了静态方法可以直接实例化一个Counter。  </li>
+<li>Meter:        QPS监控——用来度量某个时间段的平均处理次数，每1、5、15分钟的TPS。通过metrics.meter()实例化Meter，然后通过meter.mark()记录请求。统计结果有总的请求数，平均每秒的请求数，以及最近的1、5、15分钟的平均TPS等。  </li>
+<li>Timer:        响应时间及QPS监控——主要是用来统计某一块代码段的执行时间以及其分布情况，需要Cover住一个耗时的上下文。</li>
 </ul>
 <h2 id="u7CFB_u7EDF_u76D1_u63A7"><a href="#u7CFB_u7EDF_u76D1_u63A7" class="headerlink" title="系统监控"></a>系统监控</h2><ul>
-<li><h3 id="u5F02_u5E38_u76D1_u63A7_3A__u9700_u8981_u914D_u7F6E_u5F02_u5E38_u65E5_u5FD7_u7684_u6536_u96C6_uFF0C_u89C1wiki"><a href="#u5F02_u5E38_u76D1_u63A7_3A__u9700_u8981_u914D_u7F6E_u5F02_u5E38_u65E5_u5FD7_u7684_u6536_u96C6_uFF0C_u89C1wiki" class="headerlink" title="异常监控:    需要配置异常日志的收集，见wiki"></a>异常监控:    需要配置异常日志的收集，<a href="http://wiki.corp.qunar.com/pages/viewpage.action?pageId=87333222" target="_blank" rel="external">见wiki</a></h3></li>
-<li><h3 id="HTTP_u76D1_u63A7_3A_common_version_26gt_3B_3D8-2-6-_u5F15_u5165common-web_u4F9D_u8D56_uFF0C_u5E76_u914D_u7F6ESpring_3A_u3002"><a href="#HTTP_u76D1_u63A7_3A_common_version_26gt_3B_3D8-2-6-_u5F15_u5165common-web_u4F9D_u8D56_uFF0C_u5E76_u914D_u7F6ESpring_3A_u3002" class="headerlink" title="HTTP监控:    common version&gt;=8.2.6.引入common-web依赖，并配置Spring:。"></a>HTTP监控:    common version&gt;=8.2.6.引入common-web依赖，并配置Spring:<context:component-scan base-package="qunar.web.spring">。</context:component-scan></h3></li>
-<li><h3 id="SQL_u76D1_u63A7_3A_common_version_26gt_3B_3D8-2-11_uFF0C_u542F_u7528Qtrace"><a href="#SQL_u76D1_u63A7_3A_common_version_26gt_3B_3D8-2-11_uFF0C_u542F_u7528Qtrace" class="headerlink" title="SQL监控:    common version&gt;=8.2.11，启用Qtrace"></a>SQL监控:    common version&gt;=8.2.11，启用Qtrace</h3></li>
-<li><h3 id="Dubbo_u76D1_u63A7_3A_common_version_26gt_3B_3D8-2-4_uFF0C_u4F9D_u8D56common-rpc_2C_u7248_u672C_u540Ccommon"><a href="#Dubbo_u76D1_u63A7_3A_common_version_26gt_3B_3D8-2-4_uFF0C_u4F9D_u8D56common-rpc_2C_u7248_u672C_u540Ccommon" class="headerlink" title="Dubbo监控:    common version&gt;=8.2.4，依赖common-rpc,版本同common"></a>Dubbo监控:    common version&gt;=8.2.4，依赖common-rpc,版本同common</h3><h1 id="u4E8C_u3001_u4F7F_u7528common-core_API_u76F4_u63A5_u5728_u4EE3_u7801_u91CC_u6253_u76D1_u63A7_uFF0C_u5177_u4F53_u5982_u4E0B_uFF1A"><a href="#u4E8C_u3001_u4F7F_u7528common-core_API_u76F4_u63A5_u5728_u4EE3_u7801_u91CC_u6253_u76D1_u63A7_uFF0C_u5177_u4F53_u5982_u4E0B_uFF1A" class="headerlink" title="二、使用common-core API直接在代码里打监控，具体如下："></a>二、使用common-core API直接在代码里打监控，具体如下：</h1>TODO　以下方法可以封装成QMonitor类似的简洁调用接口。</li>
+<li>异常监控:    需要配置异常日志的收集，<a href="http://wiki.corp.qunar.com/pages/viewpage.action?pageId=87333222" target="_blank" rel="external">见wiki</a>  </li>
+<li>HTTP监控:    common version&gt;=8.2.6.引入common-web依赖，并配置Spring:<code>&lt;context:component-scan base-package=&quot;qunar.web.spring&quot; /&gt;</code>。  </li>
+<li>SQL监控:    common version&gt;=8.2.11，启用Qtrace  </li>
+<li>Dubbo监控:    common version&gt;=8.2.4，依赖common-rpc,版本同common  <h1 id="u4E8C_u3001_u4F7F_u7528common-core_API_u76F4_u63A5_u5728_u4EE3_u7801_u91CC_u6253_u76D1_u63A7_uFF0C_u5177_u4F53_u5982_u4E0B_uFF1A"><a href="#u4E8C_u3001_u4F7F_u7528common-core_API_u76F4_u63A5_u5728_u4EE3_u7801_u91CC_u6253_u76D1_u63A7_uFF0C_u5177_u4F53_u5982_u4E0B_uFF1A" class="headerlink" title="二、使用common-core API直接在代码里打监控，具体如下："></a>二、使用common-core API直接在代码里打监控，具体如下：</h1><ul>
+<li>TODO 以下方法可以封装成QMonitor类似的简洁调用接口。</li>
 </ul>
-<h2 id="1-_u8BB0_u5F55_u5F53_u524D_u72B6_u6001_u65F6_u7684_u67D0_u4E2A_u6570_u503C_uFF1A"><a href="#1-_u8BB0_u5F55_u5F53_u524D_u72B6_u6001_u65F6_u7684_u67D0_u4E2A_u6570_u503C_uFF1A" class="headerlink" title="1.记录当前状态时的某个数值："></a>1.记录当前状态时的某个数值：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Metrics.gauge(<span class="string">"key"</span>).call(<span class="keyword">new</span> Gauge() &#123;<span class="comment">//“key”即监控名</span></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//在这里给出监控值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="2-_u8BB0_u5F55_u4E00_u4E2A_u7D2F_u8BA1_u503C"><a href="#2-_u8BB0_u5F55_u4E00_u4E2A_u7D2F_u8BA1_u503C" class="headerlink" title="2.记录一个累计值"></a>2.记录一个累计值</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Counter count = Metrics.counter(<span class="string">"key"</span>).get();<span class="comment">//“key”即监控名</span></span><br><span class="line">	count.inc();<span class="comment">//累加，或count.inc(n);</span></span><br><span class="line">	count.dec();<span class="comment">//递减,或count.dec(n);</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-_u8BB0_u5F55_u5355_u6B21_u53D8_u5316_u91CF_u3002_u53EF_u4EE5_u7528_u6765_u76D1_u63A7_u9519_u8BEF_u6570_u3001_u5F02_u5E38_u7B49_uFF0C_u4F46_u6CE8_u610F_3A_u4E0B_u9762_u4EE3_u7801_u7684_u7B2C_u4E00_u53E5_u5C3D_u91CF_u653E_u5728static_u5757_u4E2D_uFF0C_u5982_u679C_u653E_u5728_u9519_u8BEF_u6216_u5F02_u5E38_u53D1_u751F_u5904_uFF0C_u5219_u672A_u51FA_u9519_u65F6_uFF0C_u5C06_u4E0D_u4F1A_u4EA7_u751F_u76D1_u63A7_u56FE_uFF0C_u5F71_u54CD_u62A5_u8B66_u7684_u6DFB_u52A0"><a href="#3-_u8BB0_u5F55_u5355_u6B21_u53D8_u5316_u91CF_u3002_u53EF_u4EE5_u7528_u6765_u76D1_u63A7_u9519_u8BEF_u6570_u3001_u5F02_u5E38_u7B49_uFF0C_u4F46_u6CE8_u610F_3A_u4E0B_u9762_u4EE3_u7801_u7684_u7B2C_u4E00_u53E5_u5C3D_u91CF_u653E_u5728static_u5757_u4E2D_uFF0C_u5982_u679C_u653E_u5728_u9519_u8BEF_u6216_u5F02_u5E38_u53D1_u751F_u5904_uFF0C_u5219_u672A_u51FA_u9519_u65F6_uFF0C_u5C06_u4E0D_u4F1A_u4EA7_u751F_u76D1_u63A7_u56FE_uFF0C_u5F71_u54CD_u62A5_u8B66_u7684_u6DFB_u52A0" class="headerlink" title="3.记录单次变化量。可以用来监控错误数、异常等，但注意:下面代码的第一句尽量放在static块中，如果放在错误或异常发生处，则未出错时，将不会产生监控图，影响报警的添加"></a>3.记录单次变化量。可以用来监控错误数、异常等，但注意:下面代码的第一句尽量放在static块中，如果放在错误或异常发生处，则未出错时，将不会产生监控图，影响报警的添加</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Counter count = Metrics.counter(<span class="string">"key"</span>).delta().get();<span class="comment">//“key”即监控名</span></span><br><span class="line">count.inc();</span><br></pre></td></tr></table></figure>
-<h2 id="4-_u8BB0_u5F55_u53D8_u5316_u7387_uFF08_u4E0D_u6E05_u96F6_uFF09"><a href="#4-_u8BB0_u5F55_u53D8_u5316_u7387_uFF08_u4E0D_u6E05_u96F6_uFF09" class="headerlink" title="4.记录变化率（不清零）"></a>4.记录变化率（不清零）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Counter count = Metrics.counter(<span class="string">"key"</span>).delta().keep().get();<span class="comment">//“key”即监控名</span></span><br><span class="line">count.inc();</span><br></pre></td></tr></table></figure>
-<h2 id="5-_u76D1_u63A7QPS"><a href="#5-_u76D1_u63A7QPS" class="headerlink" title="5.监控QPS"></a>5.监控QPS</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Meter meter = Metrics.meter(<span class="string">"key"</span>).get();</span><br><span class="line">meter.mark();<span class="comment">//在请求发生处调用mark()方法</span></span><br></pre></td></tr></table></figure>
-<h2 id="6-_u76D1_u63A7_u54CD_u5E94_u65F6_u95F4_uFF0C_u4E5F_u53EF_u7528_u4E8E_u8BB0_u5F55QPS_uFF0C_u9700_u8981Cover_u8017_u65F6_u4E0A_u4E0B_u6587"><a href="#6-_u76D1_u63A7_u54CD_u5E94_u65F6_u95F4_uFF0C_u4E5F_u53EF_u7528_u4E8E_u8BB0_u5F55QPS_uFF0C_u9700_u8981Cover_u8017_u65F6_u4E0A_u4E0B_u6587" class="headerlink" title="6.监控响应时间，也可用于记录QPS，需要Cover耗时上下文"></a>6.监控响应时间，也可用于记录QPS，需要Cover耗时上下文</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Timer.Context time = Metrics.timer(<span class="string">"key"</span>).get().time();<span class="comment">//没有tag的时候可以作为常量         </span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="comment">//耗时操作</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    time.stop();<span class="comment">//操作完成</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="7-_u6307_u6807_u5206_u7EC4_u76D1_u63A7_u2014_u2014tag"><a href="#7-_u6307_u6807_u5206_u7EC4_u76D1_u63A7_u2014_u2014tag" class="headerlink" title="7.指标分组监控——tag"></a>7.指标分组监控——tag</h2><p>调用Metrics./gauge/counter/meter/timer(“”).tag(key, value).get()，来获取KeyWrapper</p>
+</li>
+</ul>
+<h3 id="1-_u8BB0_u5F55_u5F53_u524D_u72B6_u6001_u65F6_u7684_u67D0_u4E2A_u6570_u503C_uFF1A"><a href="#1-_u8BB0_u5F55_u5F53_u524D_u72B6_u6001_u65F6_u7684_u67D0_u4E2A_u6570_u503C_uFF1A" class="headerlink" title="1.记录当前状态时的某个数值："></a>1.记录当前状态时的某个数值：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Metrics.gauge(<span class="string">"key"</span>).call(<span class="keyword">new</span> Gauge() &#123;<span class="comment">//“key”即监控名</span></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//在这里给出监控值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="2-_u8BB0_u5F55_u4E00_u4E2A_u7D2F_u8BA1_u503C"><a href="#2-_u8BB0_u5F55_u4E00_u4E2A_u7D2F_u8BA1_u503C" class="headerlink" title="2.记录一个累计值"></a>2.记录一个累计值</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Counter count = Metrics.counter(<span class="string">"key"</span>).get();<span class="comment">//“key”即监控名</span></span><br><span class="line">	count.inc();<span class="comment">//累加，或count.inc(n);</span></span><br><span class="line">	count.dec();<span class="comment">//递减,或count.dec(n);</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-_u8BB0_u5F55_u5355_u6B21_u53D8_u5316_u91CF_u3002_u53EF_u4EE5_u7528_u6765_u76D1_u63A7_u9519_u8BEF_u6570_u3001_u5F02_u5E38_u7B49_uFF0C_u4F46_u6CE8_u610F_3A_u4E0B_u9762_u4EE3_u7801_u7684_u7B2C_u4E00_u53E5_u5C3D_u91CF_u653E_u5728static_u5757_u4E2D_uFF0C_u5982_u679C_u653E_u5728_u9519_u8BEF_u6216_u5F02_u5E38_u53D1_u751F_u5904_uFF0C_u5219_u672A_u51FA_u9519_u65F6_uFF0C_u5C06_u4E0D_u4F1A_u4EA7_u751F_u76D1_u63A7_u56FE_uFF0C_u5F71_u54CD_u62A5_u8B66_u7684_u6DFB_u52A0"><a href="#3-_u8BB0_u5F55_u5355_u6B21_u53D8_u5316_u91CF_u3002_u53EF_u4EE5_u7528_u6765_u76D1_u63A7_u9519_u8BEF_u6570_u3001_u5F02_u5E38_u7B49_uFF0C_u4F46_u6CE8_u610F_3A_u4E0B_u9762_u4EE3_u7801_u7684_u7B2C_u4E00_u53E5_u5C3D_u91CF_u653E_u5728static_u5757_u4E2D_uFF0C_u5982_u679C_u653E_u5728_u9519_u8BEF_u6216_u5F02_u5E38_u53D1_u751F_u5904_uFF0C_u5219_u672A_u51FA_u9519_u65F6_uFF0C_u5C06_u4E0D_u4F1A_u4EA7_u751F_u76D1_u63A7_u56FE_uFF0C_u5F71_u54CD_u62A5_u8B66_u7684_u6DFB_u52A0" class="headerlink" title="3.记录单次变化量。可以用来监控错误数、异常等，但注意:下面代码的第一句尽量放在static块中，如果放在错误或异常发生处，则未出错时，将不会产生监控图，影响报警的添加"></a>3.记录单次变化量。可以用来监控错误数、异常等，但注意:下面代码的第一句尽量放在static块中，如果放在错误或异常发生处，则未出错时，将不会产生监控图，影响报警的添加</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Counter count = Metrics.counter(<span class="string">"key"</span>).delta().get();<span class="comment">//“key”即监控名</span></span><br><span class="line">count.inc();</span><br></pre></td></tr></table></figure>
+<h3 id="4-_u8BB0_u5F55_u53D8_u5316_u7387_uFF08_u4E0D_u6E05_u96F6_uFF09"><a href="#4-_u8BB0_u5F55_u53D8_u5316_u7387_uFF08_u4E0D_u6E05_u96F6_uFF09" class="headerlink" title="4.记录变化率（不清零）"></a>4.记录变化率（不清零）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Counter count = Metrics.counter(<span class="string">"key"</span>).delta().keep().get();<span class="comment">//“key”即监控名</span></span><br><span class="line">count.inc();</span><br></pre></td></tr></table></figure>
+<h3 id="5-_u76D1_u63A7QPS"><a href="#5-_u76D1_u63A7QPS" class="headerlink" title="5.监控QPS"></a>5.监控QPS</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Meter meter = Metrics.meter(<span class="string">"key"</span>).get();</span><br><span class="line">meter.mark();<span class="comment">//在请求发生处调用mark()方法</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-_u76D1_u63A7_u54CD_u5E94_u65F6_u95F4_uFF0C_u4E5F_u53EF_u7528_u4E8E_u8BB0_u5F55QPS_uFF0C_u9700_u8981Cover_u8017_u65F6_u4E0A_u4E0B_u6587"><a href="#6-_u76D1_u63A7_u54CD_u5E94_u65F6_u95F4_uFF0C_u4E5F_u53EF_u7528_u4E8E_u8BB0_u5F55QPS_uFF0C_u9700_u8981Cover_u8017_u65F6_u4E0A_u4E0B_u6587" class="headerlink" title="6.监控响应时间，也可用于记录QPS，需要Cover耗时上下文"></a>6.监控响应时间，也可用于记录QPS，需要Cover耗时上下文</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Timer.Context time = Metrics.timer(<span class="string">"key"</span>).get().time();<span class="comment">//没有tag的时候可以作为常量         </span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="comment">//耗时操作</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    time.stop();<span class="comment">//操作完成</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-_u6307_u6807_u5206_u7EC4_u76D1_u63A7_u2014_u2014tag"><a href="#7-_u6307_u6807_u5206_u7EC4_u76D1_u63A7_u2014_u2014tag" class="headerlink" title="7.指标分组监控——tag"></a>7.指标分组监控——tag</h3><p>调用Metrics./gauge/counter/meter/timer(“”).tag(key, value).get()，来获取KeyWrapper</p>
 <h1 id="u4E09_u3001_u5728_u5E94_u7528_u4E2D_u5FC3-_u5E94_u7528_u8BE6_u60C5_u5217_u8868_u4E2D_uFF0C_u5F00_u542F_u76D1_u63A7_u548C_u62A5_u8B66_3A__u5E94_u7528_u4E2D_u5FC3_u2014_u2014_u5E94_u7528_u5217_u8868_u2014_u2014_u5E94_u7528_u8BE6_u60C5_u2014_u2014_u670D_u52A1_u5668_u5217_u8868_u2014_u2014_u542F_u52A8_u76D1_u63A7_u548C_u62A5_u8B66_u72B6_u6001"><a href="#u4E09_u3001_u5728_u5E94_u7528_u4E2D_u5FC3-_u5E94_u7528_u8BE6_u60C5_u5217_u8868_u4E2D_uFF0C_u5F00_u542F_u76D1_u63A7_u548C_u62A5_u8B66_3A__u5E94_u7528_u4E2D_u5FC3_u2014_u2014_u5E94_u7528_u5217_u8868_u2014_u2014_u5E94_u7528_u8BE6_u60C5_u2014_u2014_u670D_u52A1_u5668_u5217_u8868_u2014_u2014_u542F_u52A8_u76D1_u63A7_u548C_u62A5_u8B66_u72B6_u6001" class="headerlink" title="三、在应用中心-应用详情列表中，开启监控和报警: 应用中心——应用列表——应用详情——服务器列表——启动监控和报警状态"></a>三、在应用中心-应用详情列表中，开启监控和报警: 应用中心——应用列表——应用详情——服务器列表——启动监控和报警状态</h1><h1 id="u56DB_u3001_u6DFB_u52A0_u62A5_u8B66_u7684_u6B65_u9AA4_uFF1A"><a href="#u56DB_u3001_u6DFB_u52A0_u62A5_u8B66_u7684_u6B65_u9AA4_uFF1A" class="headerlink" title="四、添加报警的步骤："></a>四、添加报警的步骤：</h1><p>１.进入应用中心——监控平台——选择对应应用，这时页面上会列出该应用所监控的指标<br>２.可以通过模糊搜索查询到特定的指标，点击此指标，即可看到指标详情<br>３.点击“添加报警”——新建配置，在配置页中指定报警参数，如聚合函数、时间表达式、报警方式、通知人员、级别、次数等。<br>４.单击“保存”，即可。注意，报警方式中包括了“RTX－邮件－短信”和“发送Qmq消息”两项，其实还有微信报警，这是默认开启，只需要关注“QunarMan”公众号即可收到报警(前提:已经添加通知人员)</p>
 <blockquote>
-<p>详细设置:<a href="http://wiki.corp.qunar.com/pages/viewpage.action?pageId=81036319" target="_blank" rel="external">http://wiki.corp.qunar.com/pages/viewpage.action?pageId=81036319</a></p>
+<p>详细设置:<code>http://wiki.corp.qunar.com/pages/viewpage.action?pageId=81036319</code></p>
 </blockquote>
 <h1 id="u4E94_u3001_u67E5_u770B_u76D1_u63A7_u56FE_uFF1A"><a href="#u4E94_u3001_u67E5_u770B_u76D1_u63A7_u56FE_uFF1A" class="headerlink" title="五、查看监控图："></a>五、查看监控图：</h1><p>Wiki:<a href="http://wiki.corp.qunar.com/pages/viewpage.action?pageId=81035640" target="_blank" rel="external">http://wiki.corp.qunar.com/pages/viewpage.action?pageId=81035640</a>    </p>
 
