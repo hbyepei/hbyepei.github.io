@@ -1,8 +1,8 @@
 ---
 title: "Cmd Markdown工具"
 date: 2016-01-14 11:00:45
-tags:
-categories:
+tags: markdown
+categories: markdown
 ---
 
 # Cmd Markdown 简明语法手册
