@@ -8,20 +8,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="统计一组目录下的单词出现情况
 
-123for i in &amp;#123;5..8&amp;#125;;     do zgrep &apos;There are 1 records need to update, 0 records update successfully.&apos; l-insurance$&amp;#123;i&amp;#125;.f.cn6/201506/insurance-provider.log.2015-06-14">
+
+for i in {5..8}; 
+     do zgrep &amp;#39;There are 1 records need to update, 0 records update successfully.&amp;#39; l-insurance${i}.f.cn6/201506/insurance-provider.log.2015-06-14-*.gz; 
+   d">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux统计某文件夹下文件、文件夹的个数">
 <meta property="og:url" content="http://yoursite.com/2016/01/14/linux-search/index.html">
 <meta property="og:site_name" content="一人浅醉 -">
 <meta property="og:description" content="统计一组目录下的单词出现情况
 
-123for i in &amp;#123;5..8&amp;#125;;     do zgrep &apos;There are 1 records need to update, 0 records update successfully.&apos; l-insurance$&amp;#123;i&amp;#125;.f.cn6/201506/insurance-provider.log.2015-06-14">
-<meta property="og:updated_time" content="2016-01-14T14:54:17.677Z">
+
+for i in {5..8}; 
+     do zgrep &amp;#39;There are 1 records need to update, 0 records update successfully.&amp;#39; l-insurance${i}.f.cn6/201506/insurance-provider.log.2015-06-14-*.gz; 
+   d">
+<meta property="og:updated_time" content="2016-01-14T14:58:16.575Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux统计某文件夹下文件、文件夹的个数">
 <meta name="twitter:description" content="统计一组目录下的单词出现情况
 
-123for i in &amp;#123;5..8&amp;#125;;     do zgrep &apos;There are 1 records need to update, 0 records update successfully.&apos; l-insurance$&amp;#123;i&amp;#125;.f.cn6/201506/insurance-provider.log.2015-06-14">
+
+for i in {5..8}; 
+     do zgrep &amp;#39;There are 1 records need to update, 0 records update successfully.&amp;#39; l-insurance${i}.f.cn6/201506/insurance-provider.log.2015-06-14-*.gz; 
+   d">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -237,11 +246,17 @@
         <ul>
 <li>统计一组目录下的单词出现情况</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> &#123;<span class="number">5</span>..<span class="number">8</span>&#125;; </span><br><span class="line">    <span class="keyword">do</span> zgrep <span class="string">'There are 1 records need to update, 0 records update successfully.'</span> l-insurance<span class="variable">$&#123;i&#125;</span>.f.cn6/<span class="number">201506</span>/insurance-provider.log.<span class="number">2015</span>-<span class="number">06</span>-<span class="number">14</span>-*.gz; </span><br><span class="line">  <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>for i in {5..8}; 
+     do zgrep &#39;There are 1 records need to update, 0 records update successfully.&#39; l-insurance${i}.f.cn6/201506/insurance-provider.log.2015-06-14-*.gz; 
+   done</code></p>
+</blockquote>
 <ul>
 <li>遍历查询多台服务器上的日志</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">atnodes <span class="string">'zgrep /home/q/www/hotel-tts/logs/request.log*'</span> l-hs[<span class="number">01</span>-<span class="number">02</span>].wap.cn1 | sort -t <span class="string">'#'</span> -k1,<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>atnodes &#39;zgrep /home/q/www/hotel-tts/logs/request.log*&#39; l-hs[01-02].wap.cn1 | sort -t &#39;#&#39; -k1,1</code></p>
+</blockquote>
 <ul>
 <li>Top-N统计：<br><code>sort +awk+uniq</code> 统计文件中出现次数最多的前10个单词  </li>
 </ul>
@@ -318,7 +333,7 @@
   
   
     <a href="/2016/01/14/cmd_markdown/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Cmd Markdown工具</div>
+      <div class="article-nav-title">Cmd Markdown 简明语法手册</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
