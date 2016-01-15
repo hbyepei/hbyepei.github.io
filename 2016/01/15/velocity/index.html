@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>velocity | 一人浅醉 -</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.变量(1)变量的定义：
+#set($name = &amp;quot;hello&amp;quot;)      说明：velocity中变量是弱类型的。
+当使用#set 指令时，括在双引号中的字面字符串将解析和重新解释，如下所示：
+#set($directoryRoot = &amp;quot;www&amp;quot; )
+#set($templateName = &amp;quot;index.vm&amp;quot; )
+#set(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="velocity">
+<meta property="og:url" content="http://yoursite.com/2016/01/15/velocity/index.html">
+<meta property="og:site_name" content="一人浅醉 -">
+<meta property="og:description" content="1.变量(1)变量的定义：
+#set($name = &amp;quot;hello&amp;quot;)      说明：velocity中变量是弱类型的。
+当使用#set 指令时，括在双引号中的字面字符串将解析和重新解释，如下所示：
+#set($directoryRoot = &amp;quot;www&amp;quot; )
+#set($templateName = &amp;quot;index.vm&amp;quot; )
+#set(">
+<meta property="og:updated_time" content="2016-01-15T08:16:13.264Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="velocity">
+<meta name="twitter:description" content="1.变量(1)变量的定义：
+#set($name = &amp;quot;hello&amp;quot;)      说明：velocity中变量是弱类型的。
+当使用#set 指令时，括在双引号中的字面字符串将解析和重新解释，如下所示：
+#set($directoryRoot = &amp;quot;www&amp;quot; )
+#set($templateName = &amp;quot;index.vm&amp;quot; )
+#set(">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/yp.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">yepei</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Personal Technology Blog</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="mailto:hbyepei@qq.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/监控/" style="font-size: 10px;">监控</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="mailto:hbyepei@qq.com">Email</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/hbyepei/">GitHub</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">Java开发工程师 Corp:Qunar,Inc. QQ:519549317</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">yepei</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/yp.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">yepei</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Personal Technology Blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="mailto:hbyepei@qq.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-velocity" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/15/velocity/" class="article-date">
+  	<time datetime="2016-01-15T08:13:54.000Z" itemprop="datePublished">2016-01-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      velocity
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/velocity/">velocity</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>1.变量(1)变量的定义：
+#set($name = &quot;hello&quot;)      说明：velocity中变量是弱类型的。
+当使用#set 指令时，括在双引号中的字面字符串将解析和重新解释，如下所示：
+#set($directoryRoot = &quot;www&quot; )
+#set($templateName = &quot;index.vm&quot; )
+#set($template = &quot;$directoryRoot/$templateName&quot; )
+$template
+输出将会是：www/index.vm
+注：在velocity中使用$2.5这样的货币标识是没有问题得的，因为velocity中的变量总是以一个大写或者小写的字母开始的。
+(2)变量规范的写法
+${name} ，也可以写成：$name。提倡用前面的写法。
+例如：你希望通过一个变量$vice来动态的组织一个字符串。
+Jack is a $vicemaniac.
+本来变量是$vice现在却变成了$vicemaniac，这样Veloctiy就不知道您到底要什么了。所以，应该使用规范的格式书写 ： Jack is a ${vice}maniac
+现在Velocity知道变量是$vice而不是$vicemaniac。
+注意：当引用属性的时候不能加{}
+(3)变量的赋值:
+$name=&quot;hello&quot;
+赋值的左边必须是一个变量或者是属性引用。右边可以是下面六种类型之一：
+变量引用,字面字符串,属性引用,方法引用,字面数字,数组列表。
+下面的例子演示了上述的每种类型：
+#set( $monkey = $bill ) ## variable reference
+#set( $monkey.Friend = &quot;monica&quot; ) ## string
+#set( $monkey.Blame = $whitehouse.Leak ) ## property reference
+#set( $monkey.Plan = $spindoctor.weave($web) ) ## method reference
+#set( $monkey.Number = 123 ) ##number
+#set( $monkey.Say = [&quot;Not&quot;, $my, &quot;fault&quot;] ) ## ArrayList
+注意：①如果上述例子中的右值是null, 则左值不会被赋值，也就是说会保留以前的值。
+②velocity模板中未被定义的变量将被认为是一个字符串。例如：
+#set($foo = &quot;gibbous&quot;)
+$moon = $foo
+输出结果为：
+$moon = gibbous
+③velocity模板中不会将reference解释为对象的实例变量。例如：$foo.Name将被解释为Foo对象的getName（）方法，而不是Foo对象的Name实例变量。例如：
+$foo.getBar()  等同于$foo.Bar ；
+$data.getUser(&quot;jon&quot;) 等同于$data.User(&quot;jon&quot;) ；
+data.getRequest().getServerName() 等同于
+$data.Request.ServerName等同于${data.Request.ServerName}
+2.循环
+#foreach ($element in $list)
+This is $element.
+$velocityCount
+#end
+例子：
+#set( $list = [&quot;pine&quot;, &quot;oak&quot;, &quot;maple&quot;])
+#foreach ($element in $list)
+$velocityCount
+This is $element.&lt;br&gt;
+#end
+输出的结果为：
+1 This is pine.
+2 This is oak.
+3 This is maple.
+每次循环$list中的一个值都会赋给$element变量。
+$list可以是一个Vector、Hashtable或者Array。分配给$element的值是一个java对象，并且可以通过变量被引用。例如：如果$element t是一个java的Product类，并且这个产品的名字可以通过调用他的getName（）方法得到。
+#foreach ( $key in $list.keySet())
+Key: $key -&gt; Value: $list.get($key) &lt;br&gt;
+#end
+提示：velocity中大小写敏感。
+Velocity还特别提供了得到循环次数的方法，$velocityCount变量的名字是Velocity默认的名字。
+例子：
+First example:
+#foreach ( $foo in [1..5] )
+$foo
+#end
+Second example:
+#foreach ( $bar in [2..-2] )
+$bar
+#end
+Third example:
+#set ( $arr = [0..1] )
+#foreach ( $i in $arr )
+$i
+#end
+上面三个例子的输出结果为：
+First example：
+1 2 3 4 5
+Second example：
+2 1 0 -1 -2
+Third example：
+0 1
+3.条件语句
+#if (condition)
+#elseif (condition)
+#else
+#end
+4.语句的嵌套
+#foreach ($element in $list)
+## inner foreach 内循环
+#foreach ($element in $list)
+This is $element. $velocityCount &lt;br&gt;inner&lt;br&gt;
+#end
+## inner foreach 内循环结束
+## outer foreach
+This is $element.
+$velocityCount &lt;br&gt;outer&lt;br&gt;
+#end
+语句中也可以嵌套其他的语句，如#if…#else…#end等。
+5.注释
+(1)单行注释：
+## This is a single line comment.
+(2)多行注释：
+#*
+Thus begins a multi-line comment. Online visitors won’t
+see this text because the Velocity Templating Engine will
+ignore it.
+*#
+(3)文档格式：
+#**
+This is a VTL comment block and
+may be used to store such information
+as the document author and versioning
+information:
+@version 1.1
+@author  xiao
+*#
+6.关系和逻辑操作符
+Velocity 也具有逻辑AND, OR 和 NOT 操作符。
+如
+## example for AND
+#if($foo &amp;&amp; $bar)
+&lt;strong&gt; This AND that&lt;/strong&gt;
+#end
+例子中#if() 指令仅在$foo 和$bar 都为真的时候才为真。如果$foo 为假，则表达式也为假；并且 $bar将不被求值。如果 $foo 为真，Velocity 模板引擎将继续检查$bar的值，如果 $bar 为真，则整个表达式为真。并且输出This AND that 。如果 $bar 为假，将没有输出因为整个表达式为假。
+7.Velocity 中的宏
+Velocity中的宏我们可以理解为函数。
+①宏的定义
+#macro(宏的名称 $参数1 $参数2 …)
+语句体(即函数体)
+#end
+②宏的调用
+#宏的名称($参数1 $参数2 …)
+说明：参数之间用空格隔开。
+8．#stop
+停止执行模板引擎并返回,把它应用于debug是很有帮助的。
+9．#include与#parse
+#include和#parse的作用都是引入本地文件, 为了安全的原因，被引入的本地文件只能在TEMPLATE_ROOT目录下。
+区别：
+(1) 与#include不同的是，#parse只能指定单个对象。而#include可以有多个
+如果您需要引入多个文件，可以用逗号分隔就行：
+#include (&quot;one.gif&quot;, &quot;two.txt&quot;, &quot;three.htm&quot; )
+在括号内可以是文件名，但是更多的时候是使用变量的：
+#include ( “greetings.txt”, $seasonalstock )
+(2) #include被引入文件的内容将不会通过模板引擎解析；
+而#parse引入的文件内容Velocity将解析其中的velocity语法并移交给模板，意思就是说相当与把引入的文件copy到文件中。
+#parse是可以递归调用的，例如：如果dofoo.vm包含如下行：
+Count down.&lt;br&gt;
+#set ($count = 8)
+#parse (&quot;parsefoo.vm&quot;)
+&lt;br&gt;All done with dofoo.vm!
+那么在parsefoo.vm模板中，你可以包含如下VTL：velocity tag laugane
+$count
+#set($count = $count - 1)
+#if ( $count &gt; 0 )&lt;br&gt;
+#parse( &quot;parsefoo.vm&quot; )
+#else
+&lt;br&gt;All done with parsefoo.vm!
+#end的显示结果为：
+Count down.
+8
+7
+6
+5
+4
+3
+2
+1
+0
+All done with parsefoo.vm!
+All done with dofoo.vm!
+注意：在vm中使用#parse来嵌套另外一个vm时的变量共享问题。如：
+-&gt;a.vm 里嵌套 b.vm；
+-&gt;a.vm 里定义了变量 $param；
+-&gt;b.vm 里可以直接使用$param，无任何限制。
+但需要特别注意的是，如果b.vm里同时定义有变量$param，则b.vm里将使用b.vm里定义的值。
+10．转义字符&apos;\&apos;的使用
+如果reference被定义，两个’\’意味着输出一个’\’，如果未被定义，刚按原样输出。如：
+#set($email = &quot;foo&quot; )
+$email
+\$email
+\\$email
+\\\$email
+输出：
+foo
+$email
+\foo
+\$email
+如果$email 未定义
+$email
+\$email
+\\$email
+\\\$email
+输出：
+$email
+\$email
+\\$email
+\\$email            (前面三个斜线,这里两个)
+11．内置对象
+Velocity内置了一些对象，在vm模版里可以直接调用，列举如下：
+$request、$response、$session，另外，模板内还可以使用 $msg内的消息工具访问 Struts 的国际化资源，达到简便实现国际化的方法。
+12．数组访问
+对数组的访问在Velocity中存在问题，因为Velocity只能访问对象的方法，而数组又是一个特殊的Array，所以虽然数组可以进行循环列举，但却不能定位访问特定位置的元素，如 strs[2]，数组对固定位置元素的访问调用了Array的反射方法get(Object array, int index)，而Velocity没能提供这样的访问，所以数组要么改成List等其他类容器的方式来包装，要么就通过公用Util类的方式来提供，传入数组对象和要访问的位置参数，从而达到返回所需值的目的。
+</code></pre>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/01/14/linux-search/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux统计某文件夹下文件、文件夹的个数</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="velocity" data-title="velocity" data-url="http://yoursite.com/2016/01/15/velocity/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 yepei
+    	</div>
+      	<div class="footer-right">
+      		Maintained By Yepei
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
