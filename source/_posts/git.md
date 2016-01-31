@@ -1,5 +1,5 @@
 ---
-title: "'git'"
+title: "git"
 date: 2016-01-31 15:40:01
 tags:
 categories: git
