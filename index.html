@@ -192,6 +192,68 @@
 
       <div class="body-wrap">
   
+    <article id="post-mysql" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/02/mysql/" class="article-date">
+  	<time datetime="2016-02-02T07:57:26.000Z" itemprop="datePublished">2016-02-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/02/mysql/">mysql</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Mysql的转义字符是”\”，即反斜杠，在INSERT语句中，如果被插入的文本中包含反斜杠，那么反斜杠会被吃掉。例如：</p>
+<blockquote>
+<p><code>INSERT INTO tb (id,json) VALUES (&#39;1&#39;,&#39;&quot;person&quot;:&quot;{\&quot;name\&quot;:\&quot;yp\&quot;,\&quot;age\&quot;:\&quot;25\&quot;}&quot;&#39;);</code>  </p>
+</blockquote>
+<p>插入后，数据库中的记录中不会有“\”出现，它神秘的消失了。</p>
+<p>解决方法: 在插入之前将字符串中的<code>&quot;\&quot;</code>替换成:<code>&quot;\\&quot;</code>即可。在Java中可以使用：<code>str.replaceAll(&quot;\\\\&quot;,&quot;\\\\\\\\&quot;);</code></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/mysql字符转义/">mysql字符转义</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">

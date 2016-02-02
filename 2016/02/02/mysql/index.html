@@ -4,24 +4,24 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>git | 一人浅醉 -</title>
+  <title>mysql | 一人浅醉 -</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="git 命令在windows下无法使用pull、fetch、push等命令，提示 “please make sure you have the correct access and the repository exists“，但在git bash窗口却可以正常执行这些命令的解决办法之一：
+  <meta name="description" content="Mysql的转义字符是”\”，即反斜杠，在INSERT语句中，如果被插入的文本中包含反斜杠，那么反斜杠会被吃掉。例如：
 
-更换ssh协议为http。">
+INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&amp;quot;:&amp;quot;{\&amp;quot;name\&amp;quot;:\&amp;quot;yp\&amp;quot;,\&amp;quot;age\&amp;quot;:\&amp;quot;25">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git">
-<meta property="og:url" content="http://yoursite.com/2016/01/31/git/index.html">
+<meta property="og:title" content="mysql">
+<meta property="og:url" content="http://yoursite.com/2016/02/02/mysql/index.html">
 <meta property="og:site_name" content="一人浅醉 -">
-<meta property="og:description" content="git 命令在windows下无法使用pull、fetch、push等命令，提示 “please make sure you have the correct access and the repository exists“，但在git bash窗口却可以正常执行这些命令的解决办法之一：
+<meta property="og:description" content="Mysql的转义字符是”\”，即反斜杠，在INSERT语句中，如果被插入的文本中包含反斜杠，那么反斜杠会被吃掉。例如：
 
-更换ssh协议为http。">
-<meta property="og:updated_time" content="2016-02-02T06:42:29.332Z">
+INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&amp;quot;:&amp;quot;{\&amp;quot;name\&amp;quot;:\&amp;quot;yp\&amp;quot;,\&amp;quot;age\&amp;quot;:\&amp;quot;25">
+<meta property="og:updated_time" content="2016-02-02T08:09:05.499Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git">
-<meta name="twitter:description" content="git 命令在windows下无法使用pull、fetch、push等命令，提示 “please make sure you have the correct access and the repository exists“，但在git bash窗口却可以正常执行这些命令的解决办法之一：
+<meta name="twitter:title" content="mysql">
+<meta name="twitter:description" content="Mysql的转义字符是”\”，即反斜杠，在INSERT语句中，如果被插入的文本中包含反斜杠，那么反斜杠会被吃掉。例如：
 
-更换ssh协议为http。">
+INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&amp;quot;:&amp;quot;{\&amp;quot;name\&amp;quot;:\&amp;quot;yp\&amp;quot;,\&amp;quot;age\&amp;quot;:\&amp;quot;25">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -197,11 +197,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-mysql" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/01/31/git/" class="article-date">
-  	<time datetime="2016-01-31T07:40:01.000Z" itemprop="datePublished">2016-01-31</time>
+      <a href="/2016/02/02/mysql/" class="article-date">
+  	<time datetime="2016-02-02T07:57:26.000Z" itemprop="datePublished">2016-02-02</time>
 </a>
     </div>
   
@@ -214,7 +214,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      git
+      mysql
     </h1>
   
 
@@ -224,7 +224,7 @@
         
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/git/">git</a>
+	<a class="article-category-link" href="/categories/mysql字符转义/">mysql字符转义</a>
 	</div>
 
 
@@ -234,10 +234,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>git 命令在windows下无法使用<code>pull</code>、<code>fetch</code>、<code>push</code>等命令，提示 “<code>please make sure you have the correct access and the repository exists</code>“，但在git bash窗口却可以正常执行这些命令的解决办法之一：</p>
+        <p>Mysql的转义字符是”\”，即反斜杠，在INSERT语句中，如果被插入的文本中包含反斜杠，那么反斜杠会被吃掉。例如：</p>
 <blockquote>
-<p>更换ssh协议为http。</p>
+<p><code>INSERT INTO tb (id,json) VALUES (&#39;1&#39;,&#39;&quot;person&quot;:&quot;{\&quot;name\&quot;:\&quot;yp\&quot;,\&quot;age\&quot;:\&quot;25\&quot;}&quot;&#39;);</code>  </p>
 </blockquote>
+<p>插入后，数据库中的记录中不会有“\”出现，它神秘的消失了。</p>
+<p>解决方法: 在插入之前将字符串中的<code>&quot;\&quot;</code>替换成:<code>&quot;\\&quot;</code>即可。在Java中可以使用：<code>str.replaceAll(&quot;\\\\&quot;,&quot;\\\\\\\\&quot;);</code></p>
 
       
     </div>
@@ -247,18 +249,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/02/02/mysql/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          mysql
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/01/15/velocity/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">velocity</div>
+    <a href="/2016/01/31/git/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">git</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -293,7 +286,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="git" data-title="git" data-url="http://yoursite.com/2016/01/31/git/"></div>
+	<div class="ds-thread" data-thread-key="mysql" data-title="mysql" data-url="http://yoursite.com/2016/02/02/mysql/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
