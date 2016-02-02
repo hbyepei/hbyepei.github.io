@@ -17,8 +17,10 @@ categories: linux
 
 - 遍历查询多台服务器上的日志
 
->`atnodes 'zgrep /home/q/www/hotel-tts/logs/request.log*' l-hs[01-02].wap.cn1 | sort -t '#' -k1,1`
-
+>` atnodes 'zgrep /home/q/www/hotel-tts/logs/request.log*' l-hs[01-02].wap.cn1 | sort -t '#' -k1,1`
+>` atnodes "less /home/q/www/insurance_provider/logs/insurance-provider.log | grep -C 20 '获取到的保险产品:' --color " l-insurance[5].f.cn6.qunar.com` 
+>` atnodes "tail -f /home/q/www/insurance_provider/logs/error.log" l-insurance[5-10].f.cn6.qunar.com`
+>` atnodes "tail -n50 /home/q/www/insurance_web/logs/insurance-web.log" l-insurance[1-2].f.cn6.qunar.com`
 
 - Top-N统计：  
 `sort +awk+uniq` 统计文件中出现次数最多的前10个单词  

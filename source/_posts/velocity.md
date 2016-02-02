@@ -124,10 +124,12 @@ information:
 6.关系和逻辑操作符
 Velocity 也具有逻辑AND, OR 和 NOT 操作符。
 如
-\#\# example for AND
-\#if(\$foo && \$bar)
+`
+\\ example for AND
+#if($foo && $bar)
 <strong> This AND that</strong>
-\#end
+#end
+`
 例子中\#if() 指令仅在\$foo 和\$bar 都为真的时候才为真。如果\$foo 为假，则表达式也为假；并且 \$bar将不被求值。如果 \$foo 为真，Velocity 模板引擎将继续检查\$bar的值，如果 \$bar 为真，则整个表达式为真。并且输出This AND that 。如果 \$bar 为假，将没有输出因为整个表达式为假。
 7.Velocity 中的宏
 Velocity中的宏我们可以理解为函数。
