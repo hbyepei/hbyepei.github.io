@@ -4,21 +4,21 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>mysql | 一人浅醉 -</title>
+  <title>mysql字符转义 | 一人浅醉 -</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Mysql的转义字符是”\”，即反斜杠，在INSERT语句中，如果被插入的文本中包含反斜杠，那么反斜杠会被吃掉。例如：
 
 INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&amp;quot;:&amp;quot;{\&amp;quot;name\&amp;quot;:\&amp;quot;yp\&amp;quot;,\&amp;quot;age\&amp;quot;:\&amp;quot;25">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql">
+<meta property="og:title" content="mysql字符转义">
 <meta property="og:url" content="http://yoursite.com/2016/02/02/mysql/index.html">
 <meta property="og:site_name" content="一人浅醉 -">
 <meta property="og:description" content="Mysql的转义字符是”\”，即反斜杠，在INSERT语句中，如果被插入的文本中包含反斜杠，那么反斜杠会被吃掉。例如：
 
 INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&amp;quot;:&amp;quot;{\&amp;quot;name\&amp;quot;:\&amp;quot;yp\&amp;quot;,\&amp;quot;age\&amp;quot;:\&amp;quot;25">
-<meta property="og:updated_time" content="2016-02-02T08:09:05.499Z">
+<meta property="og:updated_time" content="2016-02-02T08:40:10.254Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mysql">
+<meta name="twitter:title" content="mysql字符转义">
 <meta name="twitter:description" content="Mysql的转义字符是”\”，即反斜杠，在INSERT语句中，如果被插入的文本中包含反斜杠，那么反斜杠会被吃掉。例如：
 
 INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&amp;quot;:&amp;quot;{\&amp;quot;name\&amp;quot;:\&amp;quot;yp\&amp;quot;,\&amp;quot;age\&amp;quot;:\&amp;quot;25">
@@ -214,7 +214,7 @@ INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&a
         
   
     <h1 class="article-title" itemprop="name">
-      mysql
+      mysql字符转义
     </h1>
   
 
@@ -224,7 +224,7 @@ INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&a
         
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/mysql字符转义/">mysql字符转义</a>
+	<a class="article-category-link" href="/categories/mysql/">mysql</a>
 	</div>
 
 
@@ -240,7 +240,7 @@ INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&a
 </blockquote>
 <p>插入后，数据库中的记录中不会有“\”出现，它神秘的消失了。</p>
 <p>解决方法: 在插入之前将字符串中的<code>&quot;\&quot;</code>替换成:<code>&quot;\\&quot;</code>即可。在Java中可以使用：<code>str.replaceAll(&quot;\\\\&quot;,&quot;\\\\\\\\&quot;);</code></p>
-
+<h5 id="u53C2_u8003Mysql_u4E2D_u6587_u518C_3A_http_3A//www-yesky-com/imagesnew/software/mysql/manual_Reference-html"><a href="#u53C2_u8003Mysql_u4E2D_u6587_u518C_3A_http_3A//www-yesky-com/imagesnew/software/mysql/manual_Reference-html" class="headerlink" title="参考Mysql中文册: http://www.yesky.com/imagesnew/software/mysql/manual_Reference.html"></a>参考<a href="http://www.yesky.com/imagesnew/software/mysql/manual_Reference.html" target="_blank" rel="external">Mysql中文册</a>: <a href="http://www.yesky.com/imagesnew/software/mysql/manual_Reference.html" target="_blank" rel="external">http://www.yesky.com/imagesnew/software/mysql/manual_Reference.html</a></h5>
       
     </div>
     
@@ -286,7 +286,7 @@ INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&a
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="mysql" data-title="mysql" data-url="http://yoursite.com/2016/02/02/mysql/"></div>
+	<div class="ds-thread" data-thread-key="mysql" data-title="mysql字符转义" data-url="http://yoursite.com/2016/02/02/mysql/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
