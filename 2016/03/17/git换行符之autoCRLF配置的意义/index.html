@@ -4,24 +4,24 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>mysql字符转义 | 一人浅醉 -</title>
+  <title>git换行符之autoCRLF配置的意义 | 一人浅醉 -</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Mysql的转义字符是”\”，即反斜杠，在INSERT语句中，如果被插入的文本中包含反斜杠，那么反斜杠会被吃掉。例如：
-
-INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&amp;quot;:&amp;quot;{\&amp;quot;name\&amp;quot;:\&amp;quot;yp\&amp;quot;,\&amp;quot;age\&amp;quot;:\&amp;quot;25">
+  <meta name="description" content="关于git换行符处理的问题，我查了一查，自己的设置中，global-config中设了autocrlf=false，systemwide中将autocrlf设成了true.  
+关于配置的作用域，systemwide&amp;gt;global&amp;gt;local。local没有配置，global会覆盖systemwide的配置，因此最终生效的是“autocrlf=false”。  
+这句的意思是“在提交与">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql字符转义">
-<meta property="og:url" content="http://yoursite.com/2016/02/02/mysql/index.html">
+<meta property="og:title" content="git换行符之autoCRLF配置的意义">
+<meta property="og:url" content="http://yoursite.com/2016/03/17/git换行符之autoCRLF配置的意义/index.html">
 <meta property="og:site_name" content="一人浅醉 -">
-<meta property="og:description" content="Mysql的转义字符是”\”，即反斜杠，在INSERT语句中，如果被插入的文本中包含反斜杠，那么反斜杠会被吃掉。例如：
-
-INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&amp;quot;:&amp;quot;{\&amp;quot;name\&amp;quot;:\&amp;quot;yp\&amp;quot;,\&amp;quot;age\&amp;quot;:\&amp;quot;25">
-<meta property="og:updated_time" content="2016-02-02T08:40:10.254Z">
+<meta property="og:description" content="关于git换行符处理的问题，我查了一查，自己的设置中，global-config中设了autocrlf=false，systemwide中将autocrlf设成了true.  
+关于配置的作用域，systemwide&amp;gt;global&amp;gt;local。local没有配置，global会覆盖systemwide的配置，因此最终生效的是“autocrlf=false”。  
+这句的意思是“在提交与">
+<meta property="og:updated_time" content="2016-03-17T02:16:47.488Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mysql字符转义">
-<meta name="twitter:description" content="Mysql的转义字符是”\”，即反斜杠，在INSERT语句中，如果被插入的文本中包含反斜杠，那么反斜杠会被吃掉。例如：
-
-INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&amp;quot;:&amp;quot;{\&amp;quot;name\&amp;quot;:\&amp;quot;yp\&amp;quot;,\&amp;quot;age\&amp;quot;:\&amp;quot;25">
+<meta name="twitter:title" content="git换行符之autoCRLF配置的意义">
+<meta name="twitter:description" content="关于git换行符处理的问题，我查了一查，自己的设置中，global-config中设了autocrlf=false，systemwide中将autocrlf设成了true.  
+关于配置的作用域，systemwide&amp;gt;global&amp;gt;local。local没有配置，global会覆盖systemwide的配置，因此最终生效的是“autocrlf=false”。  
+这句的意思是“在提交与">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -197,11 +197,11 @@ INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&a
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-mysql" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-git换行符之autoCRLF配置的意义" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/02/02/mysql/" class="article-date">
-  	<time datetime="2016-02-02T07:57:26.000Z" itemprop="datePublished">2016-02-02</time>
+      <a href="/2016/03/17/git换行符之autoCRLF配置的意义/" class="article-date">
+  	<time datetime="2016-03-17T02:12:17.000Z" itemprop="datePublished">2016-03-17</time>
 </a>
     </div>
   
@@ -214,7 +214,7 @@ INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&a
         
   
     <h1 class="article-title" itemprop="name">
-      mysql字符转义
+      git换行符之autoCRLF配置的意义
     </h1>
   
 
@@ -224,7 +224,7 @@ INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&a
         
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/mysql/">mysql</a>
+	<a class="article-category-link" href="/categories/git/">git</a>
 	</div>
 
 
@@ -234,13 +234,29 @@ INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&a
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Mysql的转义字符是”\”，即反斜杠，在INSERT语句中，如果被插入的文本中包含反斜杠，那么反斜杠会被吃掉。例如：</p>
+        <ul>
+<li>关于git换行符处理的问题，我查了一查，自己的设置中，global-config中设了autocrlf=false，systemwide中将autocrlf设成了true.  </li>
+<li>关于配置的作用域，systemwide&gt;global&gt;local。local没有配置，global会覆盖systemwide的配置，因此最终生效的是“autocrlf=false”。  </li>
+<li>这句的意思是“在提交与检出代码的时候均不对换行符进行转换”，这个设置是在当时入职时，参照wiki上配置的，然后并没有深入了解其作用。现在把根换行符相关的配置说明列在这里：  </li>
+</ul>
+<p> 首先crlf是windows下的换行符，而lf是unix下的换行符。  </p>
 <blockquote>
-<p><code>INSERT INTO tb (id,json) VALUES (&#39;1&#39;,&#39;&quot;person&quot;:&quot;{\&quot;name\&quot;:\&quot;yp\&quot;,\&quot;age\&quot;:\&quot;25\&quot;}&quot;&#39;);</code>  </p>
+<pre><code>autocrlf =true 表示要求git在提交时将crlf转换为lf，而在检出时将crlf转换为lf。  
+autocrlf = false表示提交和检出代码时均不进行转换  
+autocrlf = input 表示在提交时将crlf转换为lf，而检出时不转换  
+</code></pre></blockquote>
+<ul>
+<li><p>我又检查了一下idea右下角那儿关于文件的换行符，使用的地crlf，，这表明当前使用的是CRLF换行符，而autocrlf又是false，这会使得代码仓库中出现混合换行符，git中另有一个配置项，名叫“safecrlf”默认值是“warn”，因此git在提交时会弹出关于这个问题的提示，然而我无知的忽略了它。。。——在某次操作中顺手将其设为了“不再提示”，这也是导致后来问题的一个原因。因为这么做的话，safecrlf的值就被改为了false.  </p>
+</li>
+<li><p>因此，可以单击右下角这个换行符标志，将其改为“LF”，同时把全局配置改为autocrlf=input，以使仓库中只保留Unix换行符。  </p>
+</li>
+<li><p>另外，git有一个safecrlf，默认是false，可以改成true，表示拒绝提交混合换行符的代码。当然这可能会造成烦人的提示，但对于windows下的特殊情况可以这样设置。它的具体配置含义如下：  </p>
+<blockquote>
+<p>safecrlf = true 表示 拒绝提交包含混合换行符的文件<br>safecrlf = false 表示 允许…<br>safecrlf = warn 表示警告  </p>
 </blockquote>
-<p>插入后，数据库中的记录中不会有“\”出现，它神秘的消失了。</p>
-<p>解决方法: 在插入之前将字符串中的<code>&quot;\&quot;</code>替换成:<code>&quot;\\&quot;</code>即可。在Java中可以使用：<code>str.replaceAll(&quot;\\\\&quot;,&quot;\\\\\\\\&quot;);</code></p>
-<h5 id="u53C2_u8003Mysql_u4E2D_u6587_u518C_3A_http_3A//www-yesky-com/imagesnew/software/mysql/manual_Reference-html"><a href="#u53C2_u8003Mysql_u4E2D_u6587_u518C_3A_http_3A//www-yesky-com/imagesnew/software/mysql/manual_Reference-html" class="headerlink" title="参考Mysql中文册: http://www.yesky.com/imagesnew/software/mysql/manual_Reference.html"></a>参考<a href="http://www.yesky.com/imagesnew/software/mysql/manual_Reference.html" target="_blank" rel="external">Mysql中文册</a>: <a href="http://www.yesky.com/imagesnew/software/mysql/manual_Reference.html" target="_blank" rel="external">http://www.yesky.com/imagesnew/software/mysql/manual_Reference.html</a></h5>
+</li>
+</ul>
+
       
     </div>
     
@@ -249,18 +265,9 @@ INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&a
     
 <nav id="article-nav">
   
-    <a href="/2016/03/13/设置默认换行符/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          IntelliJ Idea设置默认换行符
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/01/31/git/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">git</div>
+    <a href="/2016/03/13/设置默认换行符/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">IntelliJ Idea设置默认换行符</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -295,7 +302,7 @@ INSERT INTO tb (id,json) VALUES (&amp;#39;1&amp;#39;,&amp;#39;&amp;quot;person&a
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="mysql" data-title="mysql字符转义" data-url="http://yoursite.com/2016/02/02/mysql/"></div>
+	<div class="ds-thread" data-thread-key="git换行符之autoCRLF配置的意义" data-title="git换行符之autoCRLF配置的意义" data-url="http://yoursite.com/2016/03/17/git换行符之autoCRLF配置的意义/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
