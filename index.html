@@ -192,6 +192,109 @@
 
       <div class="body-wrap">
   
+    <article id="post-Http幂等性" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/17/Http幂等性/" class="article-date">
+  	<time datetime="2016-03-17T02:18:12.000Z" itemprop="datePublished">2016-03-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/17/Http幂等性/">Http幂等性</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="u5E42_u7B49_u6027_u5B9A_u4E49_uFF08_u8F6C_u53D1_uFF09"><a href="#u5E42_u7B49_u6027_u5B9A_u4E49_uFF08_u8F6C_u53D1_uFF09" class="headerlink" title="幂等性定义（转发）"></a>幂等性定义（转发）</h2><hr>
+<p>HTTP方法的幂等性是指一次和多次请求某一个资源应该具有同样的副作用。幂等性属于语义范畴，正如编译器只能帮助检查语法错误一样，HTTP规范也没有办法通过消息格式等语法手段来定义它，这可能是它不太受到重视的原因之一。但实际上，幂等性是分布式系统设计中十分重要的概念，而HTTP的分布式本质也决定了它在HTTP中具有重要地位。</p>
+<p><strong>1. 分布式事务 vs 幂等设计</strong><br>为什么需要幂等性呢？我们先从一个例子说起，假设有一个从账户取钱的远程API（可以是HTTP的，也可以不是），我们暂时用类函数的方式记为：</p>
+<blockquote>
+<p>bool withdraw(account_id, amount)  </p>
+</blockquote>
+<ul>
+<li>withdraw的语义是从account_id对应的账户中扣除amount数额的钱；如果扣除成功则返回true，账户余额减少amount；如果扣除失败则返回false，账户余额不变。值得注意的是：和本地环境相比，我们不能轻易假设分布式环境的可靠性。一种典型的情况是withdraw请求已经被服务器端正确处理，但服务器端的返回结果由于网络等原因被掉丢了，导致客户端无法得知处理结果。如果是在网页上，一些不恰当的设计可能会使用户认为上一次操作失败了，然后刷新页面，这就导致了withdraw被调用两次，账户也被多扣了一次钱。如图1所示：<br><img src="http://i.imgur.com/fDQZ3gt.png" alt="">   </li>
+</ul>
+<ul>
+<li>这个问题的解决方案一是采用分布式事务，通过引入支持分布式事务的中间件来保证withdraw功能的事务性。分布式事务的优点是对于调用者很简单，复杂性都交给了中间件来管理。缺点则是一方面架构太重量级，容易被绑在特定的中间件上，不利于异构系统的集成；另一方面分布式事务虽然能保证事务的ACID性质，而但却无法提供性能和可用性的保证。</li>
+</ul>
+<ul>
+<li>另一种更轻量级的解决方案是幂等设计。我们可以通过一些技巧把withdraw变成幂等的，比如：</li>
+</ul>
+<blockquote>
+<p>int create_ticket()<br>bool idempotent_withdraw(ticket_id, account_id, amount)  </p>
+</blockquote>
+<p>create_ticket的语义是获取一个服务器端生成的唯一的处理号ticket_id，它将用于标识后续的操作。idempotent_withdraw和withdraw的区别在于关联了一个ticket_id，一个ticket_id表示的操作至多只会被处理一次，每次调用都将返回第一次调用时的处理结果。这样，idempotent_withdraw就符合幂等性了，客户端就可以放心地多次调用。</p>
+<p>基于幂等性的解决方案中一个完整的取钱流程被分解成了两个步骤：  </p>
+<blockquote>
+<p>1.调用create_ticket()获取ticket_id；<br>2.调用idempotent_withdraw(ticket_id, account_id, amount)。  </p>
+</blockquote>
+<p>虽然create_ticket不是幂等的，但在这种设计下，它对系统状态的影响可以忽略，加上idempotent_withdraw是幂等的，所以任何一步由于网络等原因失败或超时，客户端都可以重试，直到获得结果。如图2所示：<br><img src="http://i.imgur.com/eHKBYFR.png" alt="">  </p>
+<p>和分布式事务相比，幂等设计的优势在于它的轻量级，容易适应异构环境，以及性能和可用性方面。在某些性能要求比较高的应用，幂等设计往往是唯一的选择。</p>
+<h2 id="HTTP_u7684_u5E42_u7B49_u6027"><a href="#HTTP_u7684_u5E42_u7B49_u6027" class="headerlink" title="HTTP的幂等性"></a>HTTP的幂等性</h2><hr>
+<ul>
+<li>HTTP协议本身是一种面向资源的应用层协议，但对HTTP协议的使用实际上存在着两种不同的方式：一种是RESTful的，它把HTTP当成应用层协议，比较忠实地遵守了HTTP协议的各种规定；另一种是SOA的，它并没有完全把HTTP当成应用层协议，而是把HTTP协议作为了传输层协议，然后在HTTP之上建立了自己的应用层协议。本文所讨论的HTTP幂等性主要针对RESTful风格的，不过正如上一节所看到的那样，幂等性并不属于特定的协议，它是分布式系统的一种特性；所以，不论是SOA还是RESTful的Web API设计都应该考虑幂等性。下面将介绍HTTP GET、DELETE、PUT、POST四种主要方法的语义和幂等性。</li>
+</ul>
+<ul>
+<li>HTTP GET方法用于获取资源，不应有副作用，所以是幂等的。比如：GET <a href="http://www.bank.com/account/123456，不会改变资源的状态，不论调用一次还是N次都没有副作用。请注意，这里强调的是一次和N次具有相同的副作用，而不是每次GET的结果相同。GET" target="_blank" rel="external">http://www.bank.com/account/123456，不会改变资源的状态，不论调用一次还是N次都没有副作用。请注意，这里强调的是一次和N次具有相同的副作用，而不是每次GET的结果相同。GET</a> <a href="http://www.news.com/latest-news这个HTTP请求可能会每次得到不同的结果，但它本身并没有产生任何副作用，因而是满足幂等性的。" target="_blank" rel="external">http://www.news.com/latest-news这个HTTP请求可能会每次得到不同的结果，但它本身并没有产生任何副作用，因而是满足幂等性的。</a></li>
+</ul>
+<ul>
+<li>HTTP DELETE方法用于删除资源，有副作用，但它应该满足幂等性。比如：DELETE <a href="http://www.forum.com/article/4231，调用一次和N次对系统产生的副作用是相同的，即删掉id为4231的帖子；因此，调用者可以多次调用或刷新页面而不必担心引起错误。" target="_blank" rel="external">http://www.forum.com/article/4231，调用一次和N次对系统产生的副作用是相同的，即删掉id为4231的帖子；因此，调用者可以多次调用或刷新页面而不必担心引起错误。</a></li>
+</ul>
+<ul>
+<li>比较容易混淆的是HTTP POST和PUT。POST和PUT的区别容易被简单地误认为“POST表示创建资源，PUT表示更新资源”；而实际上，二者均可用于创建资源，更为本质的差别是在幂等性方面。在HTTP规范中对POST和PUT是这样定义的：</li>
+</ul>
+<ul>
+<li>POST所对应的URI并非创建的资源本身，而是资源的接收者。比如：POST <a href="http://www.forum.com/articles的语义是在http://www.forum.com/articles下创建一篇帖子，HTTP响应中应包含帖子的创建状态以及帖子的URI。两次相同的POST请求会在服务器端创建两份资源，它们具有不同的URI；所以，POST方法不具备幂等性。而PUT所对应的URI是要创建或更新的资源本身。比如：PUT" target="_blank" rel="external">http://www.forum.com/articles的语义是在http://www.forum.com/articles下创建一篇帖子，HTTP响应中应包含帖子的创建状态以及帖子的URI。两次相同的POST请求会在服务器端创建两份资源，它们具有不同的URI；所以，POST方法不具备幂等性。而PUT所对应的URI是要创建或更新的资源本身。比如：PUT</a> <a href="http://www.forum/articles/4231的语义是创建或更新ID为4231的帖子。对同一URI进行多次PUT的副作用和一次PUT是相同的；因此，PUT方法具有幂等性。" target="_blank" rel="external">http://www.forum/articles/4231的语义是创建或更新ID为4231的帖子。对同一URI进行多次PUT的副作用和一次PUT是相同的；因此，PUT方法具有幂等性。</a></li>
+</ul>
+<ul>
+<li>在介绍了几种操作的语义和幂等性之后，我们来看看如何通过Web API的形式实现前面所提到的取款功能。很简单，用POST /tickets来实现create_ticket；用PUT /accounts/account_id/ticket_id&amp;amount=xxx来实现idempotent_withdraw。值得注意的是严格来讲amount参数不应该作为URI的一部分，真正的URI应该是/accounts/account_id/ticket_id，而amount应该放在请求的body中。这种模式可以应用于很多场合，比如：论坛网站中防止意外的重复发帖。</li>
+</ul>
+<h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>上面简单介绍了幂等性的概念，用幂等设计取代分布式事务的方法，以及HTTP主要方法的语义和幂等性特征。其实，如果要追根溯源，幂等性是数学中的一个概念，表达的是N次变换与1次变换的结果相同，有兴趣的读者可以从Wikipedia上进一步了解。</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/http/">http</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-git换行符之autoCRLF配置的意义" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1019,90 +1122,6 @@ autocrlf = input 表示在提交时将crlf转换为lf，而检出时不转换
 	</div>
 
       
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-cerberus" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/13/cerberus/" class="article-date">
-  	<time datetime="2016-01-13T10:54:25.000Z" itemprop="datePublished">2016-01-13</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/13/cerberus/">cerberus监控</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>参考WiKi</strong>:<em><a href="http://wiki.corp.qunar.com/pages/viewpage.action?pageId=63243479" target="_blank" rel="external">http://wiki.corp.qunar.com/pages/viewpage.action?pageId=63243479</a></em></p>
-<h1 id="u4E00_u3001_u76D1_u63A7_u5206_u4E3A_u4E24_u7C7B_3A"><a href="#u4E00_u3001_u76D1_u63A7_u5206_u4E3A_u4E24_u7C7B_3A" class="headerlink" title="一、监控分为两类:"></a>一、监控分为两类:</h1><h2 id="u4E1A_u52A1_u76D1_u63A7"><a href="#u4E1A_u52A1_u76D1_u63A7" class="headerlink" title="业务监控"></a>业务监控</h2><ul>
-<li>Gauge:         瞬间值——一个最简单的计量，一般用来统计瞬时状态的数据信息。  </li>
-<li>Counter:    增减一个整数值——Counter是Gauge的一个特例，维护一个计数器，可以通过inc()和dec()方法对计数器做修改。使用步骤与Gauge基本类似，在MetricRegistry中提供了静态方法可以直接实例化一个Counter。  </li>
-<li>Meter:        QPS监控——用来度量某个时间段的平均处理次数，每1、5、15分钟的TPS。通过metrics.meter()实例化Meter，然后通过meter.mark()记录请求。统计结果有总的请求数，平均每秒的请求数，以及最近的1、5、15分钟的平均TPS等。  </li>
-<li>Timer:        响应时间及QPS监控——主要是用来统计某一块代码段的执行时间以及其分布情况，需要Cover住一个耗时的上下文。</li>
-</ul>
-<h2 id="u7CFB_u7EDF_u76D1_u63A7"><a href="#u7CFB_u7EDF_u76D1_u63A7" class="headerlink" title="系统监控"></a>系统监控</h2><ul>
-<li>异常监控:    需要配置异常日志的收集，<a href="http://wiki.corp.qunar.com/pages/viewpage.action?pageId=87333222" target="_blank" rel="external">见wiki</a>  </li>
-<li>HTTP监控:    common version&gt;=8.2.6.引入common-web依赖，并配置Spring:<code>&lt;context:component-scan base-package=&quot;qunar.web.spring&quot; /&gt;</code>。  </li>
-<li>SQL监控:    common version&gt;=8.2.11，启用Qtrace  </li>
-<li>Dubbo监控:    common version&gt;=8.2.4，依赖common-rpc,版本同common  <h1 id="u4E8C_u3001_u4F7F_u7528common-core_API_u76F4_u63A5_u5728_u4EE3_u7801_u91CC_u6253_u76D1_u63A7_uFF0C_u5177_u4F53_u5982_u4E0B_uFF1A"><a href="#u4E8C_u3001_u4F7F_u7528common-core_API_u76F4_u63A5_u5728_u4EE3_u7801_u91CC_u6253_u76D1_u63A7_uFF0C_u5177_u4F53_u5982_u4E0B_uFF1A" class="headerlink" title="二、使用common-core API直接在代码里打监控，具体如下："></a>二、使用common-core API直接在代码里打监控，具体如下：</h1><ul>
-<li>TODO 以下方法可以封装成QMonitor类似的简洁调用接口。</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-_u8BB0_u5F55_u5F53_u524D_u72B6_u6001_u65F6_u7684_u67D0_u4E2A_u6570_u503C_uFF1A"><a href="#1-_u8BB0_u5F55_u5F53_u524D_u72B6_u6001_u65F6_u7684_u67D0_u4E2A_u6570_u503C_uFF1A" class="headerlink" title="1.记录当前状态时的某个数值："></a>1.记录当前状态时的某个数值：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Metrics.gauge(<span class="string">"key"</span>).call(<span class="keyword">new</span> Gauge() &#123;<span class="comment">//“key”即监控名</span></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//在这里给出监控值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="2-_u8BB0_u5F55_u4E00_u4E2A_u7D2F_u8BA1_u503C"><a href="#2-_u8BB0_u5F55_u4E00_u4E2A_u7D2F_u8BA1_u503C" class="headerlink" title="2.记录一个累计值"></a>2.记录一个累计值</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Counter count = Metrics.counter(<span class="string">"key"</span>).get();<span class="comment">//“key”即监控名</span></span><br><span class="line">	count.inc();<span class="comment">//累加，或count.inc(n);</span></span><br><span class="line">	count.dec();<span class="comment">//递减,或count.dec(n);</span></span><br></pre></td></tr></table></figure>
-<h3 id="3-_u8BB0_u5F55_u5355_u6B21_u53D8_u5316_u91CF_u3002_u53EF_u4EE5_u7528_u6765_u76D1_u63A7_u9519_u8BEF_u6570_u3001_u5F02_u5E38_u7B49_uFF0C_u4F46_u6CE8_u610F_3A_u4E0B_u9762_u4EE3_u7801_u7684_u7B2C_u4E00_u53E5_u5C3D_u91CF_u653E_u5728static_u5757_u4E2D_uFF0C_u5982_u679C_u653E_u5728_u9519_u8BEF_u6216_u5F02_u5E38_u53D1_u751F_u5904_uFF0C_u5219_u672A_u51FA_u9519_u65F6_uFF0C_u5C06_u4E0D_u4F1A_u4EA7_u751F_u76D1_u63A7_u56FE_uFF0C_u5F71_u54CD_u62A5_u8B66_u7684_u6DFB_u52A0"><a href="#3-_u8BB0_u5F55_u5355_u6B21_u53D8_u5316_u91CF_u3002_u53EF_u4EE5_u7528_u6765_u76D1_u63A7_u9519_u8BEF_u6570_u3001_u5F02_u5E38_u7B49_uFF0C_u4F46_u6CE8_u610F_3A_u4E0B_u9762_u4EE3_u7801_u7684_u7B2C_u4E00_u53E5_u5C3D_u91CF_u653E_u5728static_u5757_u4E2D_uFF0C_u5982_u679C_u653E_u5728_u9519_u8BEF_u6216_u5F02_u5E38_u53D1_u751F_u5904_uFF0C_u5219_u672A_u51FA_u9519_u65F6_uFF0C_u5C06_u4E0D_u4F1A_u4EA7_u751F_u76D1_u63A7_u56FE_uFF0C_u5F71_u54CD_u62A5_u8B66_u7684_u6DFB_u52A0" class="headerlink" title="3.记录单次变化量。可以用来监控错误数、异常等，但注意:下面代码的第一句尽量放在static块中，如果放在错误或异常发生处，则未出错时，将不会产生监控图，影响报警的添加"></a>3.记录单次变化量。可以用来监控错误数、异常等，但注意:下面代码的第一句尽量放在static块中，如果放在错误或异常发生处，则未出错时，将不会产生监控图，影响报警的添加</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Counter count = Metrics.counter(<span class="string">"key"</span>).delta().get();<span class="comment">//“key”即监控名</span></span><br><span class="line">count.inc();</span><br></pre></td></tr></table></figure>
-<h3 id="4-_u8BB0_u5F55_u53D8_u5316_u7387_uFF08_u4E0D_u6E05_u96F6_uFF09"><a href="#4-_u8BB0_u5F55_u53D8_u5316_u7387_uFF08_u4E0D_u6E05_u96F6_uFF09" class="headerlink" title="4.记录变化率（不清零）"></a>4.记录变化率（不清零）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Counter count = Metrics.counter(<span class="string">"key"</span>).delta().keep().get();<span class="comment">//“key”即监控名</span></span><br><span class="line">count.inc();</span><br></pre></td></tr></table></figure>
-<h3 id="5-_u76D1_u63A7QPS"><a href="#5-_u76D1_u63A7QPS" class="headerlink" title="5.监控QPS"></a>5.监控QPS</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Meter meter = Metrics.meter(<span class="string">"key"</span>).get();</span><br><span class="line">meter.mark();<span class="comment">//在请求发生处调用mark()方法</span></span><br></pre></td></tr></table></figure>
-<h3 id="6-_u76D1_u63A7_u54CD_u5E94_u65F6_u95F4_uFF0C_u4E5F_u53EF_u7528_u4E8E_u8BB0_u5F55QPS_uFF0C_u9700_u8981Cover_u8017_u65F6_u4E0A_u4E0B_u6587"><a href="#6-_u76D1_u63A7_u54CD_u5E94_u65F6_u95F4_uFF0C_u4E5F_u53EF_u7528_u4E8E_u8BB0_u5F55QPS_uFF0C_u9700_u8981Cover_u8017_u65F6_u4E0A_u4E0B_u6587" class="headerlink" title="6.监控响应时间，也可用于记录QPS，需要Cover耗时上下文"></a>6.监控响应时间，也可用于记录QPS，需要Cover耗时上下文</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Timer.Context time = Metrics.timer(<span class="string">"key"</span>).get().time();<span class="comment">//没有tag的时候可以作为常量         </span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="comment">//耗时操作</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    time.stop();<span class="comment">//操作完成</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="7-_u6307_u6807_u5206_u7EC4_u76D1_u63A7_u2014_u2014tag"><a href="#7-_u6307_u6807_u5206_u7EC4_u76D1_u63A7_u2014_u2014tag" class="headerlink" title="7.指标分组监控——tag"></a>7.指标分组监控——tag</h3><p>调用Metrics./gauge/counter/meter/timer(“”).tag(key, value).get()，来获取KeyWrapper</p>
-<h1 id="u4E09_u3001_u5728_u5E94_u7528_u4E2D_u5FC3-_u5E94_u7528_u8BE6_u60C5_u5217_u8868_u4E2D_uFF0C_u5F00_u542F_u76D1_u63A7_u548C_u62A5_u8B66_3A__u5E94_u7528_u4E2D_u5FC3_u2014_u2014_u5E94_u7528_u5217_u8868_u2014_u2014_u5E94_u7528_u8BE6_u60C5_u2014_u2014_u670D_u52A1_u5668_u5217_u8868_u2014_u2014_u542F_u52A8_u76D1_u63A7_u548C_u62A5_u8B66_u72B6_u6001"><a href="#u4E09_u3001_u5728_u5E94_u7528_u4E2D_u5FC3-_u5E94_u7528_u8BE6_u60C5_u5217_u8868_u4E2D_uFF0C_u5F00_u542F_u76D1_u63A7_u548C_u62A5_u8B66_3A__u5E94_u7528_u4E2D_u5FC3_u2014_u2014_u5E94_u7528_u5217_u8868_u2014_u2014_u5E94_u7528_u8BE6_u60C5_u2014_u2014_u670D_u52A1_u5668_u5217_u8868_u2014_u2014_u542F_u52A8_u76D1_u63A7_u548C_u62A5_u8B66_u72B6_u6001" class="headerlink" title="三、在应用中心-应用详情列表中，开启监控和报警: 应用中心——应用列表——应用详情——服务器列表——启动监控和报警状态"></a>三、在应用中心-应用详情列表中，开启监控和报警: 应用中心——应用列表——应用详情——服务器列表——启动监控和报警状态</h1><h1 id="u56DB_u3001_u6DFB_u52A0_u62A5_u8B66_u7684_u6B65_u9AA4_uFF1A"><a href="#u56DB_u3001_u6DFB_u52A0_u62A5_u8B66_u7684_u6B65_u9AA4_uFF1A" class="headerlink" title="四、添加报警的步骤："></a>四、添加报警的步骤：</h1><p>１.进入应用中心——监控平台——选择对应应用，这时页面上会列出该应用所监控的指标<br>２.可以通过模糊搜索查询到特定的指标，点击此指标，即可看到指标详情<br>３.点击“添加报警”——新建配置，在配置页中指定报警参数，如聚合函数、时间表达式、报警方式、通知人员、级别、次数等。<br>４.单击“保存”，即可。注意，报警方式中包括了“RTX－邮件－短信”和“发送Qmq消息”两项，其实还有微信报警，这是默认开启，只需要关注“QunarMan”公众号即可收到报警(前提:已经添加通知人员)</p>
-<blockquote>
-<p>详细设置:<code>http://wiki.corp.qunar.com/pages/viewpage.action?pageId=81036319</code></p>
-</blockquote>
-<h1 id="u4E94_u3001_u67E5_u770B_u76D1_u63A7_u56FE_uFF1A"><a href="#u4E94_u3001_u67E5_u770B_u76D1_u63A7_u56FE_uFF1A" class="headerlink" title="五、查看监控图："></a>五、查看监控图：</h1><p>Wiki:<a href="http://wiki.corp.qunar.com/pages/viewpage.action?pageId=81035640" target="_blank" rel="external">http://wiki.corp.qunar.com/pages/viewpage.action?pageId=81035640</a>    </p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/监控/">监控</a>
-	</div>
-
 
       
       <div class="clearfix"></div>
